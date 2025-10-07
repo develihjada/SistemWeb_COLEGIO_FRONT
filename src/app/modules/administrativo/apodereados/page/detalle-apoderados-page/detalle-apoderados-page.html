@@ -1,0 +1,250 @@
+<!-- Drawer Backdrop -->
+<div *ngIf="isOpen" class="drawer-backdrop" (click)="onBackdropClick($event)">
+
+  <!-- Drawer Container -->
+  <div class="drawer-container" [class.drawer-open]="isOpen" (click)="$event.stopPropagation()">
+
+    <!-- Header del Drawer -->
+    <div class="drawer-header">
+      <div class="d-flex align-items-center flex-1">
+        <div class="avatar-large me-3">
+          {{ getInitials(getCurrentApoderado().nombre) }}
+        </div>
+        <div>
+          <h4 class="drawer-title mb-1">{{ getCurrentApoderado().nombre }}</h4>
+          <p class="drawer-subtitle mb-0">
+            <span class="badge-type" [ngClass]="{
+              'badge-padre': getCurrentApoderado().tipo === 'Padre',
+              'badge-madre': getCurrentApoderado().tipo === 'Madre',
+              'badge-tutor': getCurrentApoderado().tipo === 'Tutor'
+            }">
+              <i class="ti" [ngClass]="{
+                'ti-user': getCurrentApoderado().tipo === 'Padre',
+                'ti-user-heart': getCurrentApoderado().tipo === 'Madre',
+                'ti-shield': getCurrentApoderado().tipo === 'Tutor'
+              }"></i>
+              {{ getCurrentApoderado().tipo }}
+            </span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Botones de acción del header -->
+      <div class="drawer-header-actions">
+        <button class="btn-header-action btn-edit" (click)="onEditApoderado()" title="Editar">
+          <i class="ti ti-edit"></i>
+        </button>
+        <button class="btn-header-action btn-delete" (click)="onDeleteApoderado()" title="Eliminar">
+          <i class="ti ti-trash"></i>
+        </button>
+        <button class="btn-header-action btn-close" (click)="onCloseDrawer()" title="Cerrar">
+          <i class="ti ti-x"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Navegación de Tabs -->
+    <div class="drawer-tabs">
+      <button
+        class="drawer-tab"
+        [class.active]="activeTab === 'general'"
+        (click)="setActiveTab('general')">
+        <i class="ti ti-user me-2"></i>
+        General
+      </button>
+      <button
+        class="drawer-tab"
+        [class.active]="activeTab === 'estudiantes'"
+        (click)="setActiveTab('estudiantes')">
+        <i class="ti ti-school me-2"></i>
+        Estudiantes
+      </button>
+      <button
+        class="drawer-tab"
+        [class.active]="activeTab === 'historial'"
+        (click)="setActiveTab('historial')">
+        <i class="ti ti-history me-2"></i>
+        Historial
+      </button>
+    </div>
+
+    <!-- Contenido del Drawer -->
+    <div class="drawer-content">
+
+      <!-- Tab General -->
+      <div *ngIf="activeTab === 'general'" class="tab-content-general">
+
+        <!-- Información Personal -->
+        <div class="info-section">
+          <h5 class="section-title">
+            <i class="ti ti-id me-2"></i>
+            Información Personal
+          </h5>
+          <div class="info-grid">
+            <div class="info-item">
+              <label class="info-label">DNI</label>
+              <div class="info-value">{{ getCurrentApoderado().dni }}</div>
+            </div>
+            <div class="info-item">
+              <label class="info-label">Fecha de Nacimiento</label>
+              <div class="info-value">{{ getCurrentApoderado().fechaNacimiento || 'No especificada' }}</div>
+            </div>
+            <div class="info-item">
+              <label class="info-label">Profesión</label>
+              <div class="info-value">{{ getCurrentApoderado().profesion || 'No especificada' }}</div>
+            </div>
+            <div class="info-item">
+              <label class="info-label">Estado Civil</label>
+              <div class="info-value">{{ getCurrentApoderado().estadoCivil || 'No especificado' }}</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contacto -->
+        <div class="info-section">
+          <h5 class="section-title">
+            <i class="ti ti-phone me-2"></i>
+            Información de Contacto
+          </h5>
+          <div class="info-grid">
+            <div class="info-item">
+              <label class="info-label">Teléfono Principal</label>
+              <div class="info-value">
+                <i class="ti ti-phone-call me-2 text-success"></i>
+                {{ getCurrentApoderado().telefono }}
+              </div>
+            </div>
+            <div class="info-item">
+              <label class="info-label">Teléfono de Emergencia</label>
+              <div class="info-value">
+                <i class="ti ti-phone me-2 text-warning"></i>
+                {{ getCurrentApoderado().telefonoEmergencia || 'No especificado' }}
+              </div>
+            </div>
+            <div class="info-item info-item-full">
+              <label class="info-label">Correo Electrónico</label>
+              <div class="info-value">
+                <i class="ti ti-mail me-2 text-info"></i>
+                <a href="mailto:{{ getCurrentApoderado().correo }}" class="email-link">
+                  {{ getCurrentApoderado().correo }}
+                </a>
+              </div>
+            </div>
+            <div class="info-item info-item-full">
+              <label class="info-label">Dirección</label>
+              <div class="info-value">
+                <i class="ti ti-map-pin me-2 text-danger"></i>
+                {{ getCurrentApoderado().direccion || 'No especificada' }}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Observaciones -->
+        <div class="info-section" *ngIf="getCurrentApoderado().observaciones">
+          <h5 class="section-title">
+            <i class="ti ti-notes me-2"></i>
+            Observaciones
+          </h5>
+          <div class="observaciones-card">
+            {{ getCurrentApoderado().observaciones }}
+          </div>
+        </div>
+
+        <!-- Información del Sistema -->
+        <div class="info-section">
+          <h5 class="section-title">
+            <i class="ti ti-database me-2"></i>
+            Información del Sistema
+          </h5>
+          <div class="info-grid">
+            <div class="info-item">
+              <label class="info-label">Fecha de Registro</label>
+              <div class="info-value">{{ getCurrentApoderado().fechaRegistro || 'No disponible' }}</div>
+            </div>
+            <div class="info-item">
+              <label class="info-label">Última Actualización</label>
+              <div class="info-value">{{ getCurrentApoderado().ultimaActualizacion || 'No disponible' }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab Estudiantes -->
+      <div *ngIf="activeTab === 'estudiantes'" class="tab-content-estudiantes">
+        <div class="estudiantes-header">
+          <h5 class="section-title">
+            <i class="ti ti-users me-2"></i>
+            Estudiantes a cargo ({{ estudiantes.length }})
+          </h5>
+        </div>
+
+        <div class="estudiantes-list">
+          <div *ngFor="let estudiante of estudiantes" class="estudiante-card">
+            <div class="estudiante-avatar">
+              <i class="ti ti-user"></i>
+            </div>
+            <div class="estudiante-info">
+              <h6 class="estudiante-nombre">{{ estudiante.nombre }}</h6>
+              <p class="estudiante-grado">{{ estudiante.grado }} - Sección {{ estudiante.seccion }}</p>
+              <span class="estudiante-estado badge-success">{{ estudiante.estado }}</span>
+            </div>
+            <div class="estudiante-actions">
+              <button class="btn-estudiante-action" title="Ver expediente">
+                <i class="ti ti-file-text"></i>
+              </button>
+              <button class="btn-estudiante-action" title="Ver notas">
+                <i class="ti ti-report"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab Historial -->
+      <div *ngIf="activeTab === 'historial'" class="tab-content-historial">
+        <div class="historial-header">
+          <h5 class="section-title">
+            <i class="ti ti-clock-history me-2"></i>
+            Historial de Actividades
+          </h5>
+        </div>
+
+        <div class="historial-timeline">
+          <div *ngFor="let actividad of historialActividades; trackBy: trackByFn" class="timeline-item">
+            <div class="timeline-marker" [ngClass]="getColorForActivityType(actividad.tipo)">
+              <i class="ti" [ngClass]="getIconForActivityType(actividad.tipo)"></i>
+            </div>
+            <div class="timeline-content">
+              <div class="timeline-header">
+                <h6 class="timeline-titulo">{{ actividad.actividad }}</h6>
+                <span class="timeline-fecha">{{ actividad.fecha }}</span>
+              </div>
+              <p class="timeline-descripcion">{{ actividad.descripcion }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer del Drawer -->
+    <div class="drawer-footer">
+      <div class="footer-info">
+        <small class="text-muted">
+          <i class="ti ti-info-circle me-1"></i>
+          ID: {{ getCurrentApoderado().id }} • Última actualización: {{ getCurrentApoderado().ultimaActualizacion }}
+        </small>
+      </div>
+      <div class="footer-actions">
+        <button class="btn-footer-action btn-secondary" (click)="onCloseDrawer()">
+          <i class="ti ti-x me-1"></i>
+          Cerrar
+        </button>
+        <button class="btn-footer-action btn-primary" (click)="onEditApoderado()">
+          <i class="ti ti-edit me-1"></i>
+          Editar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

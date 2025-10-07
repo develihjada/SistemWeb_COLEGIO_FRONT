@@ -1,0 +1,491 @@
+<!-- Contenedor principal con scroll limitado y fondo oscuro -->
+<div class="config-container">
+  <div class="config-content">
+    <!-- Header Principal -->
+    <div class="d-flex align-items-center mb-4">
+      <div class="me-3">
+        <i class="ti ti-settings display-6 text-light"></i>
+      </div>
+      <div>
+        <h1 class="mb-1 fw-bold text-light">Configuración del Sistema</h1>
+        <p class="text-light-emphasis mb-0">Administra las configuraciones generales y catálogos del sistema</p>
+      </div>
+    </div>
+
+  <div class="row">
+    <!-- Sección: Catálogos Generales -->
+    <div class="col-12 mb-4">
+      <div class="card shadow-sm border-0 config-card">
+        <div class="card-body p-4">
+          <!-- Título de Sección -->
+          <div class="d-flex align-items-center mb-3">
+            <i class="ti ti-category me-2 text-primary fs-4"></i>
+            <h3 class="mb-0 fw-semibold text-light">Catálogos Generales</h3>
+          </div>
+          <p class="text-light-emphasis mb-4 small">Administra los tipos de documentos, géneros y otras clasificaciones del sistema</p>
+
+          <!-- Lista de Configuraciones -->
+          <div class="row g-3">
+            <!-- Tipos de Documentos -->
+            <div class="col-12">
+              <div class="d-flex align-items-center justify-content-between p-3 rounded-3 hover-item"
+                   style="background: rgba(59, 130, 246, 0.05); border: 1px solid rgba(59, 130, 246, 0.1); cursor: pointer;"
+                   (click)="openTiposDocumentos()">
+                <div class="d-flex align-items-center">
+                  <div class="me-3">
+                    <div class="rounded-circle d-flex align-items-center justify-content-center"
+                         style="width: 48px; height: 48px; background: rgba(59, 130, 246, 0.1);">
+                      <i class="ti ti-file-type-doc text-primary fs-5"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <h5 class="mb-1 fw-medium text-light">Tipos de Documentos</h5>
+                    <p class="text-light-emphasis mb-0 small">DNI, Pasaporte, Certificados, etc.</p>
+                  </div>
+                </div>
+                <div class="d-flex align-items-center">
+                  <div class="form-check form-switch me-3">
+                    <input class="form-check-input" type="checkbox" checked>
+                  </div>
+                  <i class="ti ti-chevron-right text-muted"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Géneros -->
+            <div class="col-12">
+              <div class="d-flex align-items-center justify-content-between p-3 rounded-3 hover-item"
+                   style="background: rgba(59, 130, 246, 0.05); border: 1px solid rgba(59, 130, 246, 0.1); cursor: pointer;"
+                   (click)="openGeneros()">
+                <div class="d-flex align-items-center">
+                  <div class="me-3">
+                    <div class="rounded-circle d-flex align-items-center justify-content-center"
+                         style="width: 48px; height: 48px; background: rgba(16, 185, 129, 0.1);">
+                      <i class="ti ti-gender-male text-success fs-5"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <h5 class="mb-1 fw-medium text-light">Géneros</h5>
+                    <p class="text-light-emphasis mb-0 small">Masculino, Femenino, Otro</p>
+                  </div>
+                </div>
+                <div class="d-flex align-items-center">
+                  <div class="form-check form-switch me-3">
+                    <input class="form-check-input" type="checkbox" checked>
+                  </div>
+                  <i class="ti ti-chevron-right text-muted"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Estados Civiles -->
+            <div class="col-12">
+              <div class="d-flex align-items-center justify-content-between p-3 rounded-3 hover-item"
+                   style="background: rgba(245, 158, 11, 0.05); border: 1px solid rgba(245, 158, 11, 0.1); cursor: pointer;"
+                   (click)="openEstadosCiviles()">
+                <div class="d-flex align-items-center">
+                  <div class="me-3">
+                    <div class="rounded-circle d-flex align-items-center justify-content-center"
+                         style="width: 48px; height: 48px; background: rgba(245, 158, 11, 0.1);">
+                      <i class="ti ti-heart text-warning fs-5"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <h5 class="mb-1 fw-medium text-light">Estados Civiles</h5>
+                    <p class="text-light-emphasis mb-0 small">Soltero, Casado, Divorciado, Viudo</p>
+                  </div>
+                </div>
+                <div class="d-flex align-items-center">
+                  <div class="form-check form-switch me-3">
+                    <input class="form-check-input" type="checkbox" checked>
+                  </div>
+                  <i class="ti ti-chevron-right text-muted"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tipos de Relación Familiar -->
+            <div class="col-12">
+              <div class="d-flex align-items-center justify-content-between p-3 rounded-3 hover-item"
+                   style="background: rgba(139, 92, 246, 0.05); border: 1px solid rgba(139, 92, 246, 0.1); cursor: pointer;"
+                   (click)="openTiposRelacion()">
+                <div class="d-flex align-items-center">
+                  <div class="me-3">
+                    <div class="rounded-circle d-flex align-items-center justify-content-center"
+                         style="width: 48px; height: 48px; background: rgba(139, 92, 246, 0.1);">
+                      <i class="ti ti-users text-primary fs-5" style="color: #8b5cf6 !important;"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <h5 class="mb-1 fw-medium text-light">Tipos de Relación Familiar</h5>
+                    <p class="text-light-emphasis mb-0 small">Padre, Madre, Tutor, Hermano, Abuelo</p>
+                  </div>
+                </div>
+                <div class="d-flex align-items-center">
+                  <div class="form-check form-switch me-3">
+                    <input class="form-check-input" type="checkbox" checked>
+                  </div>
+                  <i class="ti ti-chevron-right text-muted"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección: Configuraciones Académicas -->
+    <div class="col-12 mb-4">
+      <div class="card shadow-sm border-0 config-card">
+        <div class="card-body p-4">
+          <!-- Título de Sección -->
+          <div class="d-flex align-items-center mb-3">
+            <i class="ti ti-school me-2 text-primary fs-4"></i>
+            <h3 class="mb-0 fw-semibold text-light">Configuraciones Académicas</h3>
+          </div>
+          <p class="text-light-emphasis mb-4 small">Administra las configuraciones relacionadas con el proceso educativo</p>
+
+          <!-- Lista de Configuraciones Académicas -->
+          <div class="row g-3">
+            <!-- Tipos de Evaluación -->
+            <div class="col-12">
+              <div class="d-flex align-items-center justify-content-between p-3 rounded-3 hover-item"
+                   style="background: rgba(239, 68, 68, 0.05); border: 1px solid rgba(239, 68, 68, 0.1); cursor: pointer;"
+                   (click)="openTiposEvaluacion()">
+                <div class="d-flex align-items-center">
+                  <div class="me-3">
+                    <div class="rounded-circle d-flex align-items-center justify-content-center"
+                         style="width: 48px; height: 48px; background: rgba(239, 68, 68, 0.1);">
+                      <i class="ti ti-clipboard-check text-danger fs-5"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <h5 class="mb-1 fw-medium text-light">Tipos de Evaluación</h5>
+                    <p class="text-light-emphasis mb-0 small">Exámenes, Tareas, Proyectos, Participación</p>
+                  </div>
+                </div>
+                <div class="d-flex align-items-center">
+                  <div class="form-check form-switch me-3">
+                    <input class="form-check-input" type="checkbox" checked>
+                  </div>
+                  <i class="ti ti-chevron-right text-muted"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Períodos Académicos -->
+            <div class="col-12">
+              <div class="d-flex align-items-center justify-content-between p-3 rounded-3 hover-item"
+                   style="background: rgba(59, 130, 246, 0.05); border: 1px solid rgba(59, 130, 246, 0.1); cursor: pointer;"
+                   (click)="openPeriodosAcademicos()">
+                <div class="d-flex align-items-center">
+                  <div class="me-3">
+                    <div class="rounded-circle d-flex align-items-center justify-content-center"
+                         style="width: 48px; height: 48px; background: rgba(59, 130, 246, 0.1);">
+                      <i class="ti ti-calendar-event text-primary fs-5"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <h5 class="mb-1 fw-medium text-light">Períodos Académicos</h5>
+                    <p class="text-light-emphasis mb-0 small">Bimestres, Trimestres, Semestres</p>
+                  </div>
+                </div>
+                <div class="d-flex align-items-center">
+                  <div class="form-check form-switch me-3">
+                    <input class="form-check-input" type="checkbox" checked>
+                  </div>
+                  <i class="ti ti-chevron-right text-muted"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Materias/Asignaturas -->
+            <div class="col-12">
+              <div class="d-flex align-items-center justify-content-between p-3 rounded-3 hover-item"
+                   style="background: rgba(16, 185, 129, 0.05); border: 1px solid rgba(16, 185, 129, 0.1); cursor: pointer;"
+                   (click)="openMaterias()">
+                <div class="d-flex align-items-center">
+                  <div class="me-3">
+                    <div class="rounded-circle d-flex align-items-center justify-content-center"
+                         style="width: 48px; height: 48px; background: rgba(16, 185, 129, 0.1);">
+                      <i class="ti ti-book-2 text-success fs-5"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <h5 class="mb-1 fw-medium text-light">Materias / Asignaturas</h5>
+                    <p class="text-light-emphasis mb-0 small">Matemáticas, Lenguaje, Ciencias, Historia</p>
+                  </div>
+                </div>
+                <div class="d-flex align-items-center">
+                  <div class="form-check form-switch me-3">
+                    <input class="form-check-input" type="checkbox" checked>
+                  </div>
+                  <i class="ti ti-chevron-right text-muted"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección: Configuraciones del Sistema -->
+    <div class="col-12 mb-4">
+      <div class="card shadow-sm border-0 config-card">
+        <div class="card-body p-4">
+          <!-- Título de Sección -->
+          <div class="d-flex align-items-center mb-3">
+            <i class="ti ti-adjustments me-2 text-primary fs-4"></i>
+            <h3 class="mb-0 fw-semibold text-light">Configuraciones del Sistema</h3>
+          </div>
+          <p class="text-light-emphasis mb-4 small">Configuraciones generales del funcionamiento del sistema</p>
+
+          <!-- Lista de Configuraciones del Sistema -->
+          <div class="row g-3">
+            <!-- Configuración General -->
+            <div class="col-12">
+              <div class="d-flex align-items-center justify-content-between p-3 rounded-3 hover-item"
+                   style="background: rgba(107, 114, 128, 0.05); border: 1px solid rgba(107, 114, 128, 0.1); cursor: pointer;"
+                   (click)="openConfiguracionGeneral()">
+                <div class="d-flex align-items-center">
+                  <div class="me-3">
+                    <div class="rounded-circle d-flex align-items-center justify-content-center"
+                         style="width: 48px; height: 48px; background: rgba(107, 114, 128, 0.1);">
+                      <i class="ti ti-settings text-light fs-5"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <h5 class="mb-1 fw-medium text-light">Configuración General</h5>
+                    <p class="text-light-emphasis mb-0 small">Nombre del colegio, logo, información básica</p>
+                  </div>
+                </div>
+                <div class="d-flex align-items-center">
+                  <div class="form-check form-switch me-3">
+                    <input class="form-check-input" type="checkbox" checked>
+                  </div>
+                  <i class="ti ti-chevron-right text-muted"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Respaldos -->
+            <div class="col-12">
+              <div class="d-flex align-items-center justify-content-between p-3 rounded-3 hover-item"
+                   style="background: rgba(245, 158, 11, 0.05); border: 1px solid rgba(245, 158, 11, 0.1); cursor: pointer;"
+                   (click)="openRespaldos()">
+                <div class="d-flex align-items-center">
+                  <div class="me-3">
+                    <div class="rounded-circle d-flex align-items-center justify-content-center"
+                         style="width: 48px; height: 48px; background: rgba(245, 158, 11, 0.1);">
+                      <i class="ti ti-database text-warning fs-5"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <h5 class="mb-1 fw-medium text-light">Respaldos</h5>
+                    <p class="text-light-emphasis mb-0 small">Configurar respaldos automáticos de la base de datos</p>
+                  </div>
+                </div>
+                <div class="d-flex align-items-center">
+                  <div class="form-check form-switch me-3">
+                    <input class="form-check-input" type="checkbox">
+                  </div>
+                  <i class="ti ti-chevron-right text-muted"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Notificaciones -->
+            <div class="col-12">
+              <div class="d-flex align-items-center justify-content-between p-3 rounded-3 hover-item"
+                   style="background: rgba(139, 92, 246, 0.05); border: 1px solid rgba(139, 92, 246, 0.1); cursor: pointer;"
+                   (click)="openNotificaciones()">
+                <div class="d-flex align-items-center">
+                  <div class="me-3">
+                    <div class="rounded-circle d-flex align-items-center justify-content-center"
+                         style="width: 48px; height: 48px; background: rgba(139, 92, 246, 0.1);">
+                      <i class="ti ti-bell text-primary fs-5" style="color: #8b5cf6 !important;"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <h5 class="mb-1 fw-medium text-light">Notificaciones</h5>
+                    <p class="text-light-emphasis mb-0 small">Configurar notificaciones automáticas del sistema</p>
+                  </div>
+                </div>
+                <div class="d-flex align-items-center">
+                  <div class="form-check form-switch me-3">
+                    <input class="form-check-input" type="checkbox" checked>
+                  </div>
+                  <i class="ti ti-chevron-right text-muted"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CSS Personalizado -->
+<style>
+/* Contenedor principal con scroll controlado */
+.config-container {
+  height: 100vh;
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  overflow: hidden;
+}
+
+.config-content {
+  height: 100%;
+  overflow-y: auto;
+  padding: 2rem;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+
+.config-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.config-content::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+}
+
+.config-content::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+
+.config-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Cards con tema oscuro */
+.config-card {
+  background: rgba(30, 41, 59, 0.8) !important;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 12px;
+}
+
+/* Items hover con tema oscuro */
+.hover-item {
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.hover-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Textos con tema oscuro */
+.text-light-emphasis {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.text-muted {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.ti-chevron-right {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* Form switches con tema oscuro */
+.form-check-input:checked {
+  background-color: #3b82f6;
+  border-color: #3b82f6;
+}
+
+.form-check-input {
+  width: 2.5rem;
+  height: 1.25rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.form-check-input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 0.25rem rgba(59, 130, 246, 0.25);
+}
+
+/* Iconos circulares con fondo oscuro */
+.rounded-circle {
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Estilos generales */
+.card {
+  border-radius: 12px;
+}
+
+.rounded-3 {
+  border-radius: 8px !important;
+}
+
+.display-6 {
+  font-size: 2.5rem;
+}
+
+/* Ajustes específicos para colores de items */
+.hover-item[style*="59, 130, 246"] {
+  background: rgba(59, 130, 246, 0.1) !important;
+  border-color: rgba(59, 130, 246, 0.2) !important;
+}
+
+.hover-item[style*="16, 185, 129"] {
+  background: rgba(16, 185, 129, 0.1) !important;
+  border-color: rgba(16, 185, 129, 0.2) !important;
+}
+
+.hover-item[style*="245, 158, 11"] {
+  background: rgba(245, 158, 11, 0.1) !important;
+  border-color: rgba(245, 158, 11, 0.2) !important;
+}
+
+.hover-item[style*="139, 92, 246"] {
+  background: rgba(139, 92, 246, 0.1) !important;
+  border-color: rgba(139, 92, 246, 0.2) !important;
+}
+
+.hover-item[style*="239, 68, 68"] {
+  background: rgba(239, 68, 68, 0.1) !important;
+  border-color: rgba(239, 68, 68, 0.2) !important;
+}
+
+.hover-item[style*="107, 114, 128"] {
+  background: rgba(107, 114, 128, 0.1) !important;
+  border-color: rgba(107, 114, 128, 0.2) !important;
+}
+
+/* Forzar tema oscuro en todos los textos */
+.config-container h1,
+.config-container h2,
+.config-container h3,
+.config-container h4,
+.config-container h5,
+.config-container h6 {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.config-container p,
+.config-container span,
+.config-container div {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* Iconos siempre visibles */
+.config-container i {
+  opacity: 1 !important;
+}
+
+/* Override para clases específicas de Bootstrap */
+.config-container .text-dark {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+</style>

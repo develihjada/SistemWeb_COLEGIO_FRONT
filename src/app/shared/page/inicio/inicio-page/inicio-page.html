@@ -1,0 +1,20 @@
+<div class="d-flex">
+  <!-- Botón menú (solo visible en móviles/tablets) -->
+  <button
+    class="btn btn-dark d-md-none position-fixed top-2 left-2 z-50"
+    (click)="toggleSidebar()"
+  >
+    <i class="ti ti-menu-2"></i>
+  </button>
+
+  <!-- Sidebar -->
+  <app-sidebar
+    [class.sidebar-visible]="sidebarVisible"
+    class="sidebar-custom d-none d-md-flex"
+  ></app-sidebar>
+
+  <!-- Contenido principal -->
+  <div class="flex-grow-1">
+    <router-outlet></router-outlet>
+  </div>
+</div>

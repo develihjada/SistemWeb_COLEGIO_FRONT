@@ -1,0 +1,23 @@
+/* Sidebar fijo */
+.sidebar-custom {
+  width: 260px;
+  background-color: #141e29;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Por defecto oculto en pantallas pequeñas */
+@media (max-width: 768px) {
+  .sidebar-custom {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 1040;
+    transform: translateX(-100%);
+  }
+
+  /* Cuando se muestra */
+  .sidebar-custom.sidebar-visible {
+    transform: translateX(0);
+  }
+}

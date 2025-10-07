@@ -1,0 +1,92 @@
+<div class="d-flex flex-column vh-100" style="width: 260px; background-color: #141e29;">
+  <!-- Logo o título -->
+  <div class="text-center py-3 border-bottom">
+    <h5 class="text-white d-flex align-items-center justify-content-center gap-2 mb-0">
+      <i class="ti ti-school"></i>
+      Sistema Colegio
+    </h5>
+    <small class="text-muted">{{ getRoleDisplayName(currentUserRole) }}</small>
+  </div>
+
+  <!-- Área de menú con scroll -->
+  <div class="flex-grow-1 overflow-auto">
+    <nav class="nav flex-column mt-3">
+
+      <!-- Iterar sobre las secciones del menú usando @for -->
+      @for (section of getVisibleMenuSections(); track section.title) {
+        <!-- Título de la sección con color específico -->
+        <li class="menu-subtitle" [class]="getSectionColorClass(section.title)">
+          {{ section.title }}
+        </li>
+
+        <!-- Iterar sobre los items de cada sección -->
+        @for (item of getVisibleMenuItems(section.items); track item.name) {
+
+          <!-- Item con hijos (submenu) -->
+          @if (hasVisibleChildren(item)) {
+            <a class="nav-link text-white d-flex justify-content-between align-items-center menu-toggle"
+               data-bs-toggle="collapse"
+               [href]="'#menu' + cleanMenuName(item.name)"
+               role="button">
+              <span class="d-flex align-items-center gap-2">
+                <i [class]="item.icon"></i>
+                {{ item.name }}
+              </span>
+              <i class="ti ti-chevron-down"></i>
+            </a>
+
+            <!-- Submenu -->
+            <div class="collapse submenu" [id]="'menu' + cleanMenuName(item.name)">
+              @for (child of getVisibleMenuItems(item.children || []); track child.name) {
+                @if (child.route) {
+                  <a class="nav-link text-white d-flex align-items-center gap-2"
+                     [routerLink]="child.route"
+                     routerLinkActive="active">
+                    <i [class]="child.icon"></i>
+                    {{ child.name }}
+                  </a>
+                }
+              }
+            </div>
+          } @else {
+            <!-- Item sin hijos (enlace directo) -->
+            @if (item.route) {
+              <a class="nav-link text-white d-flex align-items-center gap-2"
+                 [routerLink]="item.route"
+                 routerLinkActive="active">
+                <i [class]="item.icon"></i>
+                {{ item.name }}
+              </a>
+            }
+          }
+        }
+      }
+
+    </nav>
+  </div>
+
+  <!-- Información del usuario y salir -->
+  <div class="px-3 border-top">
+    <!-- Información de la versión del sistema -->
+    <div class="text-center ">
+      <small class="text-muted">{{ versionSystem }}</small>
+    </div>
+
+    <!-- Botón para cambiar rol (solo para desarrollo/testing) -->
+    <div class="mb-2">
+      <select class="form-select form-select-sm"
+              (change)="setUserRole($any($event.target).value)"
+              [value]="currentUserRole">
+        <option value="administrador">👑 Administrador</option>
+        <option value="docente">👨‍🏫 Docente</option>
+        <option value="padre_familia">👨‍👩‍👧‍👦 Padre de Familia</option>
+        <option value="personal_administrativo">💼 Personal Administrativo</option>
+      </select>
+    </div>
+
+    <!-- Salir -->
+    <a class="nav-link text-danger fw-bold d-flex align-items-center gap-2" routerLink="/logout">
+      <i class="ti ti-logout"></i> Salir
+    </a>
+  </div>
+</div>

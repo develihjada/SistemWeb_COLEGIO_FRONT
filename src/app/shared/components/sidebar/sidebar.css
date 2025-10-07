@@ -1,0 +1,224 @@
+:host {
+  display: block;
+  width: 250px;
+  background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ========================= */
+/* LINKS PRINCIPALES */
+/* ========================= */
+.nav-link {
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin: 2px 8px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  color: #cbd5e1;
+}
+
+.nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  transform: translateX(4px);
+  color: #fff !important;
+}
+
+.nav-link.active {
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  color: white !important;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.nav-link.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 3px;
+  background: #60a5fa;
+}
+
+.menu-subtitle {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.6);
+  padding: 12px 16px 4px 16px;
+  margin-top: 8px;
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+
+/* Colores para las diferentes secciones del menú */
+.menu-subtitle_group_academic {
+  border-left: 3px solid #3b82f6; /* Azul - Gestión Académica */
+  background: linear-gradient(90deg, rgba(59, 130, 246, 0.1) 0%, transparent 100%);
+}
+
+.menu-subtitle_group_admin {
+  border-left: 3px solid #10b981; /* Verde - Gestión Administrativa */
+  background: linear-gradient(90deg, rgba(16, 185, 129, 0.1) 0%, transparent 100%);
+}
+
+.menu-subtitle_group_evaluation {
+  border-left: 3px solid #f59e0b; /* Amarillo/Naranja - Evaluaciones y Notas */
+  background: linear-gradient(90deg, rgba(245, 158, 11, 0.1) 0%, transparent 100%);
+}
+
+.menu-subtitle_group_communication {
+  border-left: 3px solid #8b5cf6; /* Púrpura - Comunicaciones */
+  background: linear-gradient(90deg, rgba(139, 92, 246, 0.1) 0%, transparent 100%);
+}
+
+.menu-subtitle_group_reports {
+  border-left: 3px solid #ef4444; /* Rojo - Reportes */
+  background: linear-gradient(90deg, rgba(239, 68, 68, 0.1) 0%, transparent 100%);
+}
+
+.menu-subtitle_group_config {
+  border-left: 3px solid #6b7280; /* Gris - Configuración */
+  background: linear-gradient(90deg, rgba(107, 114, 128, 0.1) 0%, transparent 100%);
+}
+
+.menu-subtitle_group_default {
+  border-left: 3px solid #64748b; /* Gris por defecto */
+  background: linear-gradient(90deg, rgba(100, 116, 139, 0.1) 0%, transparent 100%);
+}
+
+/* Mantener compatibilidad con clases antiguas */
+.menu-subtitle_group_a {
+  border-left: 3px solid #3b82f6;
+}
+
+.menu-subtitle_group_b {
+  border-left: 3px solid #f63bb8;
+}
+
+.menu-subtitle_group_c {
+  border-left: 3px solid #cef63b;
+}
+
+.menu-subtitle_group_d {
+  border-left: 3px solid #f63b3b;
+}
+
+/* ========================= */
+/* SUBMENÚS */
+/* ========================= */
+.submenu {
+  overflow: hidden;
+  transition: height 0.3s ease;
+}
+
+.submenu .nav-link {
+  font-size: 0.9rem;
+  padding: 8px 16px;
+  margin-left: 16px;
+  border-left: 2px solid rgba(255, 255, 255, 0.1);
+  opacity: 0;
+  transform: translateY(-5px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.submenu.show .nav-link {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.submenu .nav-link:hover {
+  border-left-color: #3b82f6;
+}
+
+/* ========================= */
+/* ICONOS */
+/* ========================= */
+.ti {
+  font-size: 1.1rem;
+  width: 20px;
+  text-align: center;
+}
+
+h5 .ti {
+  font-size: 1.5rem;
+  color: #3b82f6;
+}
+
+/* ========================= */
+/* SCROLL DEL SIDEBAR */
+/* ========================= */
+.menu-scroll-area {
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: calc(100vh - 140px);
+  padding-right: 4px;
+}
+
+.menu-scroll-area::-webkit-scrollbar {
+  width: 6px;
+}
+
+.menu-scroll-area::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 3px;
+}
+
+.menu-scroll-area::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+  transition: background 0.2s ease;
+}
+
+.menu-scroll-area::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.menu-scroll-area {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) rgba(255, 255, 255, 0.05);
+}
+
+/* ========================= */
+/* BOTÓN TOGGLE DEL SUBMENÚ */
+/* ========================= */
+.menu-toggle {
+  cursor: pointer;
+}
+
+.menu-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.chevron-icon {
+  transition: transform 0.25s ease;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.menu-toggle[aria-expanded="true"] .chevron-icon {
+  transform: rotate(180deg);
+}
+
+.menu-toggle[aria-expanded="false"] .chevron-icon {
+  transform: rotate(0deg);
+}
+
+/* ========================= */
+/* FOOTER DEL SIDEBAR */
+/* ========================= */
+.border-top {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.text-danger {
+  color: #ef4444 !important;
+}
+
+.text-danger:hover {
+  color: #dc2626 !important;
+  background-color: rgba(239, 68, 68, 0.1) !important;
+}
