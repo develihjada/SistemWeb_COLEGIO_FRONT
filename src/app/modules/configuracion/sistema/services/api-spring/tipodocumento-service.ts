@@ -15,9 +15,7 @@ export class TipodocumentoService {
   public ListarTipoDocumentos(req: RequestTipoDocumento): Observable<ResponseTipoDocumento> {
     return this.httpCliente.post<ResponseTipoDocumento>(
       `${this.URL}/tipoDocumento/mostrar`,req,
-      {
-        headers: { 'Content-Type': 'application/json' },
-      }
+      { headers: { 'Content-Type': 'application/json' }}
     );
   }
 }
