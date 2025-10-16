@@ -44,6 +44,12 @@ export class InicioPage {
       roles: [UserRole.ADMINISTRADOR, UserRole.DOCENTE, UserRole.PERSONAL_ADMINISTRATIVO],
       items: [
         {
+          name: 'Matrícula',
+          icon: 'ti ti-list',
+          route: `/${this.rutaPrincipal}/lista_matricula`,
+          roles: [UserRole.ADMINISTRADOR, UserRole.DOCENTE, UserRole.PERSONAL_ADMINISTRATIVO],
+        },
+        {
           name: 'Evaluaciones y notas',
           icon: 'ti ti-list',
           route: '/estudiantes/lista',
@@ -373,8 +379,10 @@ export class InicioPage {
     this.mostrarTodos = true;
   }
 
-  // ========================================================================
 
+  // ========================================================================
+  // Salir del sistema
+  // ========================================================================
 
 
   logout(): void {

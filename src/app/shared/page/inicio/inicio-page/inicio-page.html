@@ -65,6 +65,7 @@
               <ul>
                 @for (item of getVisibleMenuItems(section.items); track item.name) {
                 <li
+                  [routerLink]="item.route"
                   class="py-1 px-2 border-transparent border-l-4 hover:border-l-4 hover:border-orange-600 hover:font-bold transition"
                 >
                   <a [routerLink]="item.route">{{ item.name }}</a>
