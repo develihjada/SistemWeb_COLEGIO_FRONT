@@ -1,20 +1,510 @@
-<div class="d-flex">
-  <!-- Botón menú (solo visible en móviles/tablets) -->
-  <button
-    class="btn btn-dark d-md-none position-fixed top-2 left-2 z-50"
-    (click)="toggleSidebar()"
-  >
-    <i class="ti ti-menu-2"></i>
-  </button>
+<div class="p-4 w-full h-screen flex flex-col gap-4">
+  <div class="flex justify-between">
+      <div class="">
+        <img src="assets/logo.png" alt="logo">
+      </div>
+      <div class="flex flex-col gap-2 justify-center">
+          <h1 class="text-center text-4xl font-bold text-orange-600">Hola Davis Junior</h1>
+          <p class="text-center text-xl text-gray-600">Bienvenido a la página de inicio</p>
+      </div>
+      <div class="flex items-center">
+        <button>
 
-  <!-- Sidebar -->
-  <app-sidebar
-    [class.sidebar-visible]="sidebarVisible"
-    class="sidebar-custom d-none d-md-flex"
-  ></app-sidebar>
-
-  <!-- Contenido principal -->
-  <div class="flex-grow-1">
-    <router-outlet></router-outlet>
+        </button>
+        <button class="bg-gray-200 w-[3rem] h-[3rem] flex justify-center items-center rounded-full hover:bg-gray-300">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-bell-ringing"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M17.451 2.344a1 1 0 0 1 1.41 -.099a12.05 12.05 0 0 1 3.048 4.064a1 1 0 1 1 -1.818 .836a10.05 10.05 0 0 0 -2.54 -3.39a1 1 0 0 1 -.1 -1.41z" /><path d="M5.136 2.245a1 1 0 0 1 1.312 1.51a10.05 10.05 0 0 0 -2.54 3.39a1 1 0 1 1 -1.817 -.835a12.05 12.05 0 0 1 3.045 -4.065z" /><path d="M14.235 19c.865 0 1.322 1.024 .745 1.668a3.992 3.992 0 0 1 -2.98 1.332a3.992 3.992 0 0 1 -2.98 -1.332c-.552 -.616 -.158 -1.579 .634 -1.661l.11 -.006h4.471z" /><path d="M12 2c1.358 0 2.506 .903 2.875 2.141l.046 .171l.008 .043a8.013 8.013 0 0 1 4.024 6.069l.028 .287l.019 .289v2.931l.021 .136a3 3 0 0 0 1.143 1.847l.167 .117l.162 .099c.86 .487 .56 1.766 -.377 1.864l-.116 .006h-16c-1.028 0 -1.387 -1.364 -.493 -1.87a3 3 0 0 0 1.472 -2.063l.021 -.143l.001 -2.97a8 8 0 0 1 3.821 -6.454l.248 -.146l.01 -.043a3.003 3.003 0 0 1 2.562 -2.29l.182 -.017l.176 -.004z" /></svg>
+        </button>
+        <div class="h-[2rem] border-l-2 border-gray-400 mx-3"></div>
+        <button class="bg-red-600 w-[6rem] h-[3rem] px-4 py-2 text-white rounded hover:bg-red-700">Salir</button>
+      </div>
   </div>
+
+  <div class="flex gap-2">
+    <div class="flex-1 grid grid-cols-3 flex-wrap justify-center gap-2 h-[calc(100vh-8rem)] overflow-y-auto">
+      <div class="border border-orange-600 p-4 rounded-lg hover:shadow-lg">
+          <div class="flex flex-col h-full gap-2">
+            <div class="flex rounded-lg h-[3rem] bg-orange-500 items-center justify-center text-center relative overflow-hidden">
+              <div class="fondo"></div>
+              <div class="absolute inset-0 bg-amber-600 opacity-80 mix-blend-multiply z-10"></div>
+              <h3 class="absolute px-4 w-full text-white font-bold z-10 text-left">Módulo Académico</h3>
+            </div>
+            <div class="">
+              <ul>
+                <li class="py-1 px-2 border-transparent border-l-4 hover:border-l-4 hover:border-orange-600 hover:font-bold transition"><a href="">Evaluaciones y Notas</a></li>
+                <li class="py-1 px-2 border-transparent border-l-4 hover:border-l-4 hover:border-orange-600 hover:font-bold transition"><a href="">Asistencia de alumnos</a></li>
+                <li class="py-1 px-2 border-transparent border-l-4 hover:border-l-4 hover:border-orange-600 hover:font-bold transition"><a href="">Contenido/Recursos Educativos</a></li>
+                <li class="py-1 px-2 border-transparent border-l-4 hover:border-l-4 hover:border-orange-600 hover:font-bold transition"><a href="">Horarios</a></li>
+                <li class="py-1 px-2 border-transparent border-l-4 hover:border-l-4 hover:border-orange-600 hover:font-bold transition">
+                  <a href="">Comunicaciones</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+      </div>
+
+      <div class="border border-orange-600  p-4 rounded-lg hover:shadow-lg">
+          <div class="flex flex-col h-full gap-2">
+            <div class="flex rounded-lg h-[3rem] bg-orange-500 items-center justify-center text-center relative overflow-hidden">
+              <div class="fondo"></div>
+              <div class="absolute inset-0 bg-amber-600 opacity-80 mix-blend-multiply z-10"></div>
+              <h3 class="absolute px-4 w-full text-white font-bold z-10 text-left">Módulo Académico</h3>
+            </div>
+            <div class="">
+              <ul>
+                <li class="py-1 px-2 border-transparent border-l-4 hover:border-l-4 hover:border-orange-600 hover:font-bold transition"><a href="">Evaluaciones y Notas</a></li>
+                <li class="py-1 px-2 border-transparent border-l-4 hover:border-l-4 hover:border-orange-600 hover:font-bold transition"><a href="">Asistencia de alumnos</a></li>
+                <li class="py-1 px-2 border-transparent border-l-4 hover:border-l-4 hover:border-orange-600 hover:font-bold transition"><a href="">Contenido/Recursos Educativos</a></li>
+                <li class="py-1 px-2 border-transparent border-l-4 hover:border-l-4 hover:border-orange-600 hover:font-bold transition"><a href="">Horarios</a></li>
+                <li class="py-1 px-2 border-transparent border-l-4 hover:border-l-4 hover:border-orange-600 hover:font-bold transition">
+                  <a href="">Comunicaciones</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+      </div>
+
+      <div class="border border-orange-600  p-4 rounded-lg hover:shadow-lg">
+          <div class="flex flex-col h-full gap-2">
+            <div class="flex rounded-lg h-[3rem] bg-orange-500 items-center justify-center text-center relative overflow-hidden">
+              <div class="fondo"></div>
+              <div class="absolute inset-0 bg-amber-600 opacity-80 mix-blend-multiply z-10"></div>
+              <h3 class="absolute px-4 w-full text-white font-bold z-10 text-left">Módulo Académico</h3>
+            </div>
+            <div class="">
+              <ul>
+                <li class="py-1 px-2 border-transparent border-l-4 hover:border-l-4 hover:border-orange-600 hover:font-bold transition"><a href="">Evaluaciones y Notas</a></li>
+                <li class="py-1 px-2 border-transparent border-l-4 hover:border-l-4 hover:border-orange-600 hover:font-bold transition"><a href="">Asistencia de alumnos</a></li>
+                <li class="py-1 px-2 border-transparent border-l-4 hover:border-l-4 hover:border-orange-600 hover:font-bold transition"><a href="">Contenido/Recursos Educativos</a></li>
+                <li class="py-1 px-2 border-transparent border-l-4 hover:border-l-4 hover:border-orange-600 hover:font-bold transition"><a href="">Horarios</a></li>
+                <li class="py-1 px-2 border-transparent border-l-4 hover:border-l-4 hover:border-orange-600 hover:font-bold transition">
+                  <a href="">Comunicaciones</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+      </div>
+
+      <div class="border border-orange-600  p-4 rounded-lg hover:shadow-lg">
+          <div class="flex flex-col h-full gap-2">
+            <div class="flex rounded-lg h-[3rem] bg-orange-500 items-center justify-center text-center relative overflow-hidden">
+              <div class="fondo"></div>
+              <div class="absolute inset-0 bg-amber-600 opacity-80 mix-blend-multiply z-10"></div>
+              <h3 class="absolute px-4 w-full text-white font-bold z-10 text-left">Módulo Académico</h3>
+            </div>
+            <div class="">
+              <ul>
+                <li class="py-1 px-2 border-transparent border-l-4 hover:border-l-4 hover:border-orange-600 hover:font-bold transition"><a href="">Evaluaciones y Notas</a></li>
+                <li class="py-1 px-2 border-transparent border-l-4 hover:border-l-4 hover:border-orange-600 hover:font-bold transition"><a href="">Asistencia de alumnos</a></li>
+                <li class="py-1 px-2 border-transparent border-l-4 hover:border-l-4 hover:border-orange-600 hover:font-bold transition"><a href="">Contenido/Recursos Educativos</a></li>
+                <li class="py-1 px-2 border-transparent border-l-4 hover:border-l-4 hover:border-orange-600 hover:font-bold transition"><a href="">Horarios</a></li>
+                <li class="py-1 px-2 border-transparent border-l-4 hover:border-l-4 hover:border-orange-600 hover:font-bold transition">
+                  <a href="">Comunicaciones</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+      </div>
+
+      <div class="border border-orange-600  p-4 rounded-lg hover:shadow-lg">
+          <div class="flex flex-col h-full gap-2">
+            <div class="flex rounded-lg h-[3rem] bg-orange-500 items-center justify-center text-center relative overflow-hidden">
+              <div class="fondo"></div>
+              <div class="absolute inset-0 bg-amber-600 opacity-80 mix-blend-multiply z-10"></div>
+              <h3 class="absolute px-4 w-full text-white font-bold z-10 text-left">Módulo Académico</h3>
+            </div>
+            <div class="">
+              <ul>
+                <li class="py-1 px-2 border-transparent border-l-4 hover:border-l-4 hover:border-orange-600 hover:font-bold transition"><a href="">Evaluaciones y Notas</a></li>
+                <li class="py-1 px-2 border-transparent border-l-4 hover:border-l-4 hover:border-orange-600 hover:font-bold transition"><a href="">Asistencia de alumnos</a></li>
+                <li class="py-1 px-2 border-transparent border-l-4 hover:border-l-4 hover:border-orange-600 hover:font-bold transition"><a href="">Contenido/Recursos Educativos</a></li>
+                <li class="py-1 px-2 border-transparent border-l-4 hover:border-l-4 hover:border-orange-600 hover:font-bold transition"><a href="">Horarios</a></li>
+                <li class="py-1 px-2 border-transparent border-l-4 hover:border-l-4 hover:border-orange-600 hover:font-bold transition">
+                  <a href="">Comunicaciones</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+      </div>
+    </div>
+
+    <!-- Usuarios Conectados -->
+    <div class="w-[20rem] max-w-md h-[calc(100vh-8rem)] bg-white border border-gray-200 rounded-lg shadow-sm p-4 overflow-y-auto">
+      <h2 class="text-xl font-semibold text-gray-800 mb-4">Alumnos faltantes hoy</h2>
+      <ul class="space-y-3">
+
+        <!-- Alumno ausente -->
+        <li class="flex items-center justify-between py-2 px-4 bg-red-50 rounded-md border border-red-100">
+          <!-- Info del alumno -->
+          <div class="flex items-center gap-3">
+            <img class="w-10 h-10 rounded-full object-cover border" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Alumno">
+            <div>
+              <p class="font-medium text-gray-800">Carlos Huamán</p>
+              <p class="text-sm text-gray-600">5to Grado - Sección B</p>
+              <p class="text-sm text-red-600 flex items-center gap-1">
+                <span class="inline-block w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
+                Ausente
+              </p>
+            </div>
+          </div>
+
+          <!-- Acciones -->
+          <div class="flex items-center gap-3 text-gray-500">
+            <!-- Icono de mensaje -->
+            <button title="Enviar mensaje" class="hover:text-blue-600 transition">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.77 9.77 0 01-4-.9L3 20l1.5-4A8.978 8.978 0 013 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+              </svg>
+            </button>
+
+            <!-- Icono de ver detalles -->
+            <button title="Ver detalles" class="hover:text-green-600 transition">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M15 12H9m12 0c0 6-4.5 10-10 10S1 18 1 12 5.5 2 11 2s10 4.5 10 10z" />
+              </svg>
+            </button>
+          </div>
+        </li>
+
+          <!-- Alumno ausente -->
+        <li class="flex items-center justify-between py-2 px-4 bg-red-50 rounded-md border border-red-100">
+          <!-- Info del alumno -->
+          <div class="flex items-center gap-3">
+            <img class="w-10 h-10 rounded-full object-cover border" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Alumno">
+            <div>
+              <p class="font-medium text-gray-800">Carlos Huamán</p>
+              <p class="text-sm text-gray-600">5to Grado - Sección B</p>
+              <p class="text-sm text-red-600 flex items-center gap-1">
+                <span class="inline-block w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
+                Ausente
+              </p>
+            </div>
+          </div>
+
+          <!-- Acciones -->
+          <div class="flex items-center gap-3 text-gray-500">
+            <!-- Icono de mensaje -->
+            <button title="Enviar mensaje" class="hover:text-blue-600 transition">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.77 9.77 0 01-4-.9L3 20l1.5-4A8.978 8.978 0 013 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+              </svg>
+            </button>
+
+            <!-- Icono de ver detalles -->
+            <button title="Ver detalles" class="hover:text-green-600 transition">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M15 12H9m12 0c0 6-4.5 10-10 10S1 18 1 12 5.5 2 11 2s10 4.5 10 10z" />
+              </svg>
+            </button>
+          </div>
+        </li>
+
+          <!-- Alumno ausente -->
+        <li class="flex items-center justify-between py-2 px-4 bg-red-50 rounded-md border border-red-100">
+          <!-- Info del alumno -->
+          <div class="flex items-center gap-3">
+            <img class="w-10 h-10 rounded-full object-cover border" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Alumno">
+            <div>
+              <p class="font-medium text-gray-800">Carlos Huamán</p>
+              <p class="text-sm text-gray-600">5to Grado - Sección B</p>
+              <p class="text-sm text-red-600 flex items-center gap-1">
+                <span class="inline-block w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
+                Ausente
+              </p>
+            </div>
+          </div>
+
+          <!-- Acciones -->
+          <div class="flex items-center gap-3 text-gray-500">
+            <!-- Icono de mensaje -->
+            <button title="Enviar mensaje" class="hover:text-blue-600 transition">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.77 9.77 0 01-4-.9L3 20l1.5-4A8.978 8.978 0 013 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+              </svg>
+            </button>
+
+            <!-- Icono de ver detalles -->
+            <button title="Ver detalles" class="hover:text-green-600 transition">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M15 12H9m12 0c0 6-4.5 10-10 10S1 18 1 12 5.5 2 11 2s10 4.5 10 10z" />
+              </svg>
+            </button>
+          </div>
+        </li>
+
+          <!-- Alumno ausente -->
+        <li class="flex items-center justify-between py-2 px-4 bg-red-50 rounded-md border border-red-100">
+          <!-- Info del alumno -->
+          <div class="flex items-center gap-3">
+            <img class="w-10 h-10 rounded-full object-cover border" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Alumno">
+            <div>
+              <p class="font-medium text-gray-800">Carlos Huamán</p>
+              <p class="text-sm text-gray-600">5to Grado - Sección B</p>
+              <p class="text-sm text-red-600 flex items-center gap-1">
+                <span class="inline-block w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
+                Ausente
+              </p>
+            </div>
+          </div>
+
+          <!-- Acciones -->
+          <div class="flex items-center gap-3 text-gray-500">
+            <!-- Icono de mensaje -->
+            <button title="Enviar mensaje" class="hover:text-blue-600 transition">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.77 9.77 0 01-4-.9L3 20l1.5-4A8.978 8.978 0 013 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+              </svg>
+            </button>
+
+            <!-- Icono de ver detalles -->
+            <button title="Ver detalles" class="hover:text-green-600 transition">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M15 12H9m12 0c0 6-4.5 10-10 10S1 18 1 12 5.5 2 11 2s10 4.5 10 10z" />
+              </svg>
+            </button>
+          </div>
+        </li>
+
+          <!-- Alumno ausente -->
+        <li class="flex items-center justify-between py-2 px-4 bg-red-50 rounded-md border border-red-100">
+          <!-- Info del alumno -->
+          <div class="flex items-center gap-3">
+            <img class="w-10 h-10 rounded-full object-cover border" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Alumno">
+            <div>
+              <p class="font-medium text-gray-800">Carlos Huamán</p>
+              <p class="text-sm text-gray-600">5to Grado - Sección B</p>
+              <p class="text-sm text-red-600 flex items-center gap-1">
+                <span class="inline-block w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
+                Ausente
+              </p>
+            </div>
+          </div>
+
+          <!-- Acciones -->
+          <div class="flex items-center gap-3 text-gray-500">
+            <!-- Icono de mensaje -->
+            <button title="Enviar mensaje" class="hover:text-blue-600 transition">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.77 9.77 0 01-4-.9L3 20l1.5-4A8.978 8.978 0 013 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+              </svg>
+            </button>
+
+            <!-- Icono de ver detalles -->
+            <button title="Ver detalles" class="hover:text-green-600 transition">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M15 12H9m12 0c0 6-4.5 10-10 10S1 18 1 12 5.5 2 11 2s10 4.5 10 10z" />
+              </svg>
+            </button>
+          </div>
+        </li>
+
+          <!-- Alumno ausente -->
+        <li class="flex items-center justify-between py-2 px-4 bg-red-50 rounded-md border border-red-100">
+          <!-- Info del alumno -->
+          <div class="flex items-center gap-3">
+            <img class="w-10 h-10 rounded-full object-cover border" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Alumno">
+            <div>
+              <p class="font-medium text-gray-800">Carlos Huamán</p>
+              <p class="text-sm text-gray-600">5to Grado - Sección B</p>
+              <p class="text-sm text-red-600 flex items-center gap-1">
+                <span class="inline-block w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
+                Ausente
+              </p>
+            </div>
+          </div>
+
+          <!-- Acciones -->
+          <div class="flex items-center gap-3 text-gray-500">
+            <!-- Icono de mensaje -->
+            <button title="Enviar mensaje" class="hover:text-blue-600 transition">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.77 9.77 0 01-4-.9L3 20l1.5-4A8.978 8.978 0 013 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+              </svg>
+            </button>
+
+            <!-- Icono de ver detalles -->
+            <button title="Ver detalles" class="hover:text-green-600 transition">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M15 12H9m12 0c0 6-4.5 10-10 10S1 18 1 12 5.5 2 11 2s10 4.5 10 10z" />
+              </svg>
+            </button>
+          </div>
+        </li>
+
+          <!-- Alumno ausente -->
+        <li class="flex items-center justify-between py-2 px-4 bg-red-50 rounded-md border border-red-100">
+          <!-- Info del alumno -->
+          <div class="flex items-center gap-3">
+            <img class="w-10 h-10 rounded-full object-cover border" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Alumno">
+            <div>
+              <p class="font-medium text-gray-800">Carlos Huamán</p>
+              <p class="text-sm text-gray-600">5to Grado - Sección B</p>
+              <p class="text-sm text-red-600 flex items-center gap-1">
+                <span class="inline-block w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
+                Ausente
+              </p>
+            </div>
+          </div>
+
+          <!-- Acciones -->
+          <div class="flex items-center gap-3 text-gray-500">
+            <!-- Icono de mensaje -->
+            <button title="Enviar mensaje" class="hover:text-blue-600 transition">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.77 9.77 0 01-4-.9L3 20l1.5-4A8.978 8.978 0 013 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+              </svg>
+            </button>
+
+            <!-- Icono de ver detalles -->
+            <button title="Ver detalles" class="hover:text-green-600 transition">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M15 12H9m12 0c0 6-4.5 10-10 10S1 18 1 12 5.5 2 11 2s10 4.5 10 10z" />
+              </svg>
+            </button>
+          </div>
+        </li>
+
+          <!-- Alumno ausente -->
+        <li class="flex items-center justify-between py-2 px-4 bg-red-50 rounded-md border border-red-100">
+          <!-- Info del alumno -->
+          <div class="flex items-center gap-3">
+            <img class="w-10 h-10 rounded-full object-cover border" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Alumno">
+            <div>
+              <p class="font-medium text-gray-800">Carlos Huamán</p>
+              <p class="text-sm text-gray-600">5to Grado - Sección B</p>
+              <p class="text-sm text-red-600 flex items-center gap-1">
+                <span class="inline-block w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
+                Ausente
+              </p>
+            </div>
+          </div>
+
+          <!-- Acciones -->
+          <div class="flex items-center gap-3 text-gray-500">
+            <!-- Icono de mensaje -->
+            <button title="Enviar mensaje" class="hover:text-blue-600 transition">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.77 9.77 0 01-4-.9L3 20l1.5-4A8.978 8.978 0 013 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+              </svg>
+            </button>
+
+            <!-- Icono de ver detalles -->
+            <button title="Ver detalles" class="hover:text-green-600 transition">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M15 12H9m12 0c0 6-4.5 10-10 10S1 18 1 12 5.5 2 11 2s10 4.5 10 10z" />
+              </svg>
+            </button>
+          </div>
+        </li>
+
+          <!-- Alumno ausente -->
+        <li class="flex items-center justify-between py-2 px-4 bg-red-50 rounded-md border border-red-100">
+          <!-- Info del alumno -->
+          <div class="flex items-center gap-3">
+            <img class="w-10 h-10 rounded-full object-cover border" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Alumno">
+            <div>
+              <p class="font-medium text-gray-800">Carlos Huamán</p>
+              <p class="text-sm text-gray-600">5to Grado - Sección B</p>
+              <p class="text-sm text-red-600 flex items-center gap-1">
+                <span class="inline-block w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
+                Ausente
+              </p>
+            </div>
+          </div>
+
+          <!-- Acciones -->
+          <div class="flex items-center gap-3 text-gray-500">
+            <!-- Icono de mensaje -->
+            <button title="Enviar mensaje" class="hover:text-blue-600 transition">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.77 9.77 0 01-4-.9L3 20l1.5-4A8.978 8.978 0 013 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+              </svg>
+            </button>
+
+            <!-- Icono de ver detalles -->
+            <button title="Ver detalles" class="hover:text-green-600 transition">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M15 12H9m12 0c0 6-4.5 10-10 10S1 18 1 12 5.5 2 11 2s10 4.5 10 10z" />
+              </svg>
+            </button>
+          </div>
+        </li>
+
+          <!-- Alumno ausente -->
+        <li class="flex items-center justify-between py-2 px-4 bg-red-50 rounded-md border border-red-100">
+          <!-- Info del alumno -->
+          <div class="flex items-center gap-3">
+            <img class="w-10 h-10 rounded-full object-cover border" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Alumno">
+            <div>
+              <p class="font-medium text-gray-800">Carlos Huamán</p>
+              <p class="text-sm text-gray-600">5to Grado - Sección B</p>
+              <p class="text-sm text-red-600 flex items-center gap-1">
+                <span class="inline-block w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
+                Ausente
+              </p>
+            </div>
+          </div>
+
+          <!-- Acciones -->
+          <div class="flex items-center gap-3 text-gray-500">
+            <!-- Icono de mensaje -->
+            <button title="Enviar mensaje" class="hover:text-blue-600 transition">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.77 9.77 0 01-4-.9L3 20l1.5-4A8.978 8.978 0 013 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+              </svg>
+            </button>
+
+            <!-- Icono de ver detalles -->
+            <button title="Ver detalles" class="hover:text-green-600 transition">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M15 12H9m12 0c0 6-4.5 10-10 10S1 18 1 12 5.5 2 11 2s10 4.5 10 10z" />
+              </svg>
+            </button>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+
+  </div>
+
 </div>

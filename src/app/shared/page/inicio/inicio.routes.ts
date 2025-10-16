@@ -5,7 +5,7 @@ import { TIPODOCUMENTOS_ROUTES } from '../../../modules/configuracion/tipoDocume
 
 export const INICIO_ROUTES: Routes = [
   {
-    path: '',
+    path: 'inicio',
     loadComponent: () => import('./inicio-page/inicio-page').then(m => m.InicioPage),
     children: [
       ...APODERADOS_ROUTES,
