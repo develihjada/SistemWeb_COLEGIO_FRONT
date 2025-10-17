@@ -8,3 +8,28 @@
   background-position: center;
   background-repeat: no-repeat;
 }
+
+/* Encabezado de tarjeta: fijar altura y truncar títulos largos a 2 líneas */
+.card-header {
+  min-height: 3.25rem; /* asegura altura consistente (ajusta según tu diseño) */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.card-title {
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* limita a 2 líneas */
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.1rem;
+  max-height: 2.2rem; /* 2 * line-height */
+}
+
+/* Forzar que el header no aumente la altura del card cuando el contenido se expande */
+.card-header-border {
+  border-bottom-width: 2px;
+}

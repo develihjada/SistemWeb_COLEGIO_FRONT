@@ -1,14 +1,13 @@
 <div class="p-4 w-full h-screen flex flex-col gap-4 bg-gray-50">
-  <div class="flex justify-between">
-    <div class="">
+  <div class="flex flex-col justify-between md:flex-row lg:flex-row">
+    <div class="w-full h-15 md:w-10 lg:w-10">
       <img src="assets/logo.png" alt="logo" />
     </div>
     <div class="flex flex-col gap-2 justify-center">
       <h1 class="text-center text-4xl font-bold text-orange-600">Hola Davis Junior</h1>
       <p class="text-center text-xl text-gray-600">Bienvenido a la página de inicio</p>
     </div>
-    <div class="flex items-center">
-      <button></button>
+    <div class="flex items-center justify-center mt-4 md:mt-0 lg:mt-0">
       <button
         class="bg-gray-200 w-[3rem] h-[3rem] flex justify-center items-center rounded-full hover:bg-gray-300"
       >
@@ -44,133 +43,224 @@
     </div>
   </div>
 
-  <div class="flex gap-2">
-    <div
-      class="flex-1 grid grid-cols-3 flex-wrap justify-center gap-2 h-[calc(100vh-8rem)] overflow-y-auto"
-    >
-      @for (section of getVisibleMenuSections(); track section.title) {
-      <ng-container>
-        <div class="border border-orange-600 p-4 bg-white rounded-lg hover:shadow-lg">
-          <div class="flex flex-col h-full gap-2">
+  <div class="p-6 bg-gray-50 min-h-screen">
+    <h1 class="text-3xl font-bold text-gray-800 mb-6">Panel de Control 🚀</h1>
+
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+      <div class="lg:col-span-3">
+        <h2 class="text-xl font-semibold text-gray-700 mb-4">Módulos del Sistema</h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 items-start">
+          @for (section of getVisibleMenuSections(); track section.title) {
+          <div
+            [attr.id]="section.id"
+            class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-xl transition duration-300"
+          >
             <div
-              class="flex rounded-lg h-[3rem] bg-orange-500 items-center justify-center text-center relative overflow-hidden"
+              (click)="toggleSection(section)"
+              class="p-4 cursor-pointer card-header bg-gray-50 hover:bg-gray-100 transition duration-300 card-header-border"
             >
-              <div class="fondo"></div>
-              <div class="absolute inset-0 bg-amber-600 opacity-80 mix-blend-multiply z-10"></div>
-              <h3 class="absolute px-4 w-full text-white font-bold z-10 text-left">
-                {{ section.title }}
-              </h3>
+              <div class="flex items-center space-x-3">
+                <div class="text-2xl text-orange-600">
+                  <i class="ti ti-school"></i>
+                </div>
+                <h3 class="text-lg font-bold text-gray-800 card-title">
+                  {{ section.title }}
+                </h3>
+              </div>
+              <svg
+                [class.rotate-180]="section.expanded"
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 text-gray-500 transition-transform duration-300"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
+                />
+              </svg>
             </div>
-            <div class="">
-              <ul>
+
+            <div
+              [class.max-h-screen]="isSectionExpanded(section)"
+              [class.max-h-0]="!isSectionExpanded(section)"
+              class="overflow-hidden transition-all duration-500 ease-in-out"
+            >
+              <ul class="p-4 pt-0 space-y-1">
                 @for (item of getVisibleMenuItems(section.items); track item.name) {
                 <li
                   [routerLink]="item.route"
-                  class="py-1 px-2 border-transparent border-l-4 hover:border-l-4 hover:border-orange-600 hover:font-bold transition"
+                  class="py-1 px-2 text-sm text-gray-700 border-transparent border-l-4 hover:bg-orange-50 hover:border-orange-600 cursor-pointer transition duration-150 rounded-r-md"
                 >
-                  <a [routerLink]="item.route">{{ item.name }}</a>
+                  <span class="font-medium">{{ item.name }}</span>
                 </li>
                 }
               </ul>
             </div>
           </div>
+          }
         </div>
-      </ng-container>
-      }
-    </div>
 
-    <!-- Usuarios Conectados -->
-    <div
-      class="w-[20rem] max-w-md h-[calc(100vh-8rem)] bg-white border border-gray-200 rounded-lg shadow-sm p-4 overflow-y-auto"
-    >
-      <h2 class="text-xl font-semibold text-gray-800 mb-4">Alumnos faltantes hoy</h2>
+        <div class="mt-8">
+          <h2 class="text-xl font-semibold text-gray-700 mb-4">
+            Horarios del Personal (Vista Rápida)
+          </h2>
 
-      <ul class="space-y-3">
-        @for (alumno of alumnosMostrados; track $index) {
-        <li
-          class="flex items-center justify-between py-2 px-4 bg-red-50 rounded-md border border-red-100"
-        >
-          <!-- Info del alumno -->
-          <div class="flex items-center gap-3">
-            <img
-              class="w-10 h-10 rounded-full object-cover border"
-              [src]="alumno.foto"
-              [alt]="alumno.nombre"
-            />
-            <div>
-              <p class="font-medium text-gray-800">{{ alumno.nombre }}</p>
-              <p class="text-sm text-gray-600">{{ alumno.grado }} - Sección {{ alumno.seccion }}</p>
-              <p class="text-sm text-red-600 flex items-center gap-1">
-                <span class="inline-block w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
-                Ausente
-              </p>
+          <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
+            <div class="flex flex-col gap-3 space-x-3 mb-5 border-b border-gray-200 pb-3 md:flex-row lg:flex-row">
+              <button
+                (click)="setHorarioFilter(UserRole.DOCENTE)"
+                [class.bg-orange-600]="currentHorarioFilter === UserRole.DOCENTE"
+                [class.bg-gray-200]="currentHorarioFilter !== UserRole.DOCENTE"
+                [class.text-white]="currentHorarioFilter === UserRole.DOCENTE"
+                [class.text-gray-700]="currentHorarioFilter !== UserRole.DOCENTE"
+                class="font-semibold py-2 px-4 rounded-lg transition duration-300 hover:bg-orange-700 hover:text-white"
+              >
+                Docentes
+              </button>
+              <button
+                (click)="setHorarioFilter(UserRole.PERSONAL_ADMINISTRATIVO)"
+                [class.bg-orange-600]="currentHorarioFilter === UserRole.PERSONAL_ADMINISTRATIVO"
+                [class.bg-gray-200]="currentHorarioFilter !== UserRole.PERSONAL_ADMINISTRATIVO"
+                [class.text-white]="currentHorarioFilter === UserRole.PERSONAL_ADMINISTRATIVO"
+                [class.text-gray-700]="currentHorarioFilter !== UserRole.PERSONAL_ADMINISTRATIVO"
+                class="font-semibold py-2 px-4 rounded-lg transition duration-300 hover:bg-orange-700 hover:text-white"
+              >
+                Administrativos
+              </button>
+              <span class="ml-auto flex items-center text-sm text-gray-500">
+                Hoy: {{ todayDate | date : 'EEEE, d MMM' }}
+              </span>
+            </div>
+
+            <div class="overflow-x-auto">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th
+                      class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
+                      Personal
+                    </th>
+                    <th
+                      class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
+                      Hora Inicio
+                    </th>
+                    <th
+                      class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
+                      Hora Fin
+                    </th>
+                    <th
+                      class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
+                      Actividad/Aula
+                    </th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-100">
+                  @for (item of filteredHorario; track item.nombre) {
+                  <tr [class.bg-orange-50]="item.isNow">
+                    <td class="px-4 py-3 whitespace-nowrap text-sm font-medium text-gray-900">
+                      {{ item.nombre }}
+                    </td>
+                    <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-700">
+                      {{ item.horaInicio }}
+                    </td>
+                    <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-700">
+                      {{ item.horaFin }}
+                    </td>
+                    <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-500">
+                      {{ item.actividad }}
+                    </td>
+                  </tr>
+                  } @empty {
+                  <tr>
+                    <td colspan="4" class="px-4 py-6 text-center text-gray-500">
+                      No hay horarios asignados para
+                      {{ getRoleDisplayName(currentHorarioFilter) }} en este momento.
+                    </td>
+                  </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
+
+            <div class="text-right mt-4">
+              <a
+                [routerLink]="['/dashboard/horarios/full']"
+                class="text-sm font-semibold text-orange-600 hover:text-orange-700 transition duration-150"
+              >
+                Ver Horario Completo →
+              </a>
             </div>
           </div>
-
-          <!-- Acciones -->
-          <div class="flex items-center gap-3 text-gray-500">
-            <button title="Enviar mensaje" class="hover:text-blue-600 transition">
-              <!-- Icono mensaje -->
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.77 9.77 0 01-4-.9L3 20l1.5-4A8.978 8.978 0 013 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-                />
-              </svg>
-            </button>
-
-            <button title="Ver detalles" class="hover:text-green-600 transition">
-              <!-- Icono ver detalles -->
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M15 12H9m12 0c0 6-4.5 10-10 10S1 18 1 12 5.5 2 11 2s10 4.5 10 10z"
-                />
-              </svg>
-            </button>
-          </div>
-        </li>
-        }
-      </ul>
-
-      <!-- Botón "Ver más" -->
-      @if(!mostrarTodos && alumnos.length > 3) {
-      <div class="mt-4 text-center">
-        <button
-          (click)="verMas()"
-          class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-blue-700 bg-blue-100 hover:bg-blue-200 rounded-full transition-all duration-200"
-        >
-          <svg
-            class="w-4 h-4"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
-          </svg>
-          Ver más alumnos
-        </button>
+        </div>
       </div>
+      <div class="lg:col-span-1 space-y-6">
+        <div class="bg-white p-5 rounded-xl shadow-lg border border-gray-200">
+          <div class="flex justify-between items-center mb-4">
+            <h3 class="text-lg font-bold text-gray-800 flex items-center">
+              <i class="ti ti-alert-circle text-xl text-orange-600 mr-2"></i>
+              Alumnos Faltantes Hoy
+            </h3>
+            <span class="text-sm font-bold bg-orange-600 text-white px-3 py-1 rounded-full">{{
+              alumnos.length
+            }}</span>
+          </div>
 
-      }
+          <div class="space-y-3">
+            @for (alumno of alumnosMostrados; track alumno.nombre) {
+            <div class="flex items-center space-x-3 p-2 bg-gray-50 rounded-lg">
+              <img [src]="alumno.foto" alt="Foto" class="h-8 w-8 rounded-full object-cover" />
+              <div class="flex-grow">
+                <p class="text-sm font-medium text-gray-900">{{ alumno.nombre }}</p>
+                <p class="text-xs text-gray-500">{{ alumno.grado }} ({{ alumno.seccion }})</p>
+              </div>
+            </div>
+            }
+          </div>
+
+          @if (alumnos.length > 3 && !mostrarTodos) {
+          <button
+            (click)="verMas()"
+            class="mt-4 w-full text-center text-sm font-semibold text-orange-600 hover:text-orange-700 transition duration-150"
+          >
+            Ver los {{ alumnos.length - 3 }} alumnos más...
+          </button>
+          }
+        </div>
+
+        <div class="bg-white p-5 rounded-xl shadow-lg border border-gray-200">
+          <h3 class="text-lg font-bold text-gray-800 mb-4">Acciones Rápidas</h3>
+          <div class="space-y-3">
+            <a
+              [routerLink]="['/dashboard/lista_matricula']"
+              class="flex items-center text-gray-700 hover:text-orange-600 transition duration-150"
+            >
+              <i class="ti ti-plus-circle text-xl mr-2"></i>
+              Registrar Nueva Matrícula
+            </a>
+            <a
+              [routerLink]="['/dashboard/lista_empleados']"
+              class="flex items-center text-gray-700 hover:text-orange-600 transition duration-150"
+            >
+              <i class="ti ti-users text-xl mr-2"></i>
+              Gestión de Empleados
+            </a>
+            <a
+              [routerLink]="['/dashboard/lista_usuarios']"
+              class="flex items-center text-gray-700 hover:text-orange-600 transition duration-150"
+            >
+              <i class="ti ti-lock text-xl mr-2"></i>
+              Administrar Permisos
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
