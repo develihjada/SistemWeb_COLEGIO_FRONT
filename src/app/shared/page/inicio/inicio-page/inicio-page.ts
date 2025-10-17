@@ -283,6 +283,12 @@ export class InicioPage {
           route: '/estudiantes/contenido-recursos',
           roles: [UserRole.ADMINISTRADOR, UserRole.PADRE_FAMILIA],
         },
+        {
+          name: 'Empleados',
+          icon: 'ti ti-heart',
+          route: '/lista-empleados',
+          roles: [UserRole.ADMINISTRADOR, UserRole.PADRE_FAMILIA],
+        },
       ],
     },
   ];

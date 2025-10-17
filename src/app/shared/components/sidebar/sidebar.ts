@@ -418,6 +418,12 @@ export class Sidebar {
               icon: 'ti ti-database',
               route: '/sistema/respaldos',
               roles: [UserRole.ADMINISTRADOR]
+            },
+            {
+              name: 'Empleados',
+              icon: 'ti ti-database',
+              route: '/sistema/empleados',
+              roles: [UserRole.ADMINISTRADOR]
             }
           ]
         }

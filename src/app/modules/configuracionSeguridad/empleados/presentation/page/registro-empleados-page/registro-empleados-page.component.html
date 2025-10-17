@@ -1,0 +1,206 @@
+<div class="p-6 bg-gray-50 min-h-screen">
+
+  <div class="max-w-4xl mx-auto">
+    <div class="mb-6">
+        <button (click)="prevStep()" [disabled]="currentStep === 1"
+                class="flex items-center text-gray-600 hover:text-orange-600 transition duration-150 disabled:opacity-50 disabled:cursor-not-allowed">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+            </svg>
+            <span *ngIf="currentStep === 1">Volver al Listado de Empleados</span>
+            <span *ngIf="currentStep > 1">Paso Anterior</span>
+        </button>
+        <h1 class="text-3xl font-extrabold text-gray-800 mt-2">
+            Registro de Nuevo Empleado
+        </h1>
+    </div>
+
+    <div class="flex justify-between items-center mb-8 bg-white p-4 rounded-xl shadow-lg border border-gray-200">
+
+        <div class="flex flex-col items-center flex-1 mx-2 cursor-pointer" (click)="goToStep(1)">
+            <div [class.bg-orange-600]="currentStep === 1" [class.bg-gray-200]="currentStep !== 1"
+                 [class.text-white]="currentStep === 1" [class.text-gray-500]="currentStep !== 1"
+                 class="w-10 h-10 flex items-center justify-center rounded-full font-bold mb-1 shadow-md transition duration-300">1</div>
+            <span [class.text-orange-600]="currentStep === 1" [class.text-gray-500]="currentStep !== 1"
+                  class="text-xs font-semibold hidden sm:block">Datos Personales</span>
+        </div>
+
+        <div class="w-full h-1 bg-gray-200 mx-2 flex-1"></div>
+
+        <div class="flex flex-col items-center flex-1 mx-2 cursor-pointer" (click)="goToStep(2)">
+            <div [class.bg-orange-600]="currentStep === 2" [class.bg-gray-200]="currentStep !== 2"
+                 [class.text-white]="currentStep === 2" [class.text-gray-500]="currentStep !== 2"
+                 class="w-10 h-10 flex items-center justify-center rounded-full font-bold mb-1 shadow-md transition duration-300">2</div>
+            <span [class.text-orange-600]="currentStep === 2" [class.text-gray-500]="currentStep !== 2"
+                  class="text-xs font-semibold hidden sm:block">Información Laboral</span>
+        </div>
+
+        <div class="w-full h-1 bg-gray-200 mx-2 flex-1"></div>
+
+        <div class="flex flex-col items-center flex-1 mx-2 cursor-pointer" (click)="goToStep(3)">
+            <div [class.bg-orange-600]="currentStep === 3" [class.bg-gray-200]="currentStep !== 3"
+                 [class.text-white]="currentStep === 3" [class.text-gray-500]="currentStep !== 3"
+                 class="w-10 h-10 flex items-center justify-center rounded-full font-bold mb-1 shadow-md transition duration-300">3</div>
+            <span [class.text-orange-600]="currentStep === 3" [class.text-gray-500]="currentStep !== 3"
+                  class="text-xs font-semibold hidden sm:block">Carga Documental</span>
+        </div>
+    </div>
+
+    <div class="bg-white p-6 sm:p-8 rounded-xl shadow-2xl border border-gray-200">
+
+        <div *ngIf="currentStep === 1">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-6 border-b pb-3">Paso 1: Datos Personales y de Contacto</h2>
+            <form class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label for="dni_emp" class="block text-sm font-medium text-gray-700 mb-1">DNI <span class="text-red-500">*</span></label>
+                    <input type="text" id="dni_emp" placeholder="DNI peruano"
+                           class="w-full border border-gray-300 bg-gray-50 py-2 px-3 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+                    <p class="mt-1 text-xs text-gray-500">Sugerencia: Búsqueda automática en RENIEC al ingresar el DNI.</p>
+                </div>
+                <div>
+                    <label for="fecha_nac_emp" class="block text-sm font-medium text-gray-700 mb-1">Fecha de Nacimiento <span class="text-red-500">*</span></label>
+                    <input type="date" id="fecha_nac_emp"
+                           class="w-full border border-gray-300 bg-gray-50 py-2 px-3 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+                </div>
+                <div>
+                    <label for="nombres_emp" class="block text-sm font-medium text-gray-700 mb-1">Nombres <span class="text-red-500">*</span></label>
+                    <input type="text" id="nombres_emp" placeholder="Nombres"
+                           class="w-full border border-gray-300 bg-gray-50 py-2 px-3 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+                </div>
+                <div>
+                    <label for="apellidos_emp" class="block text-sm font-medium text-gray-700 mb-1">Apellidos <span class="text-red-500">*</span></label>
+                    <input type="text" id="apellidos_emp" placeholder="Apellidos"
+                           class="w-full border border-gray-300 bg-gray-50 py-2 px-3 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+                </div>
+                <div class="md:col-span-2">
+                    <label for="direccion" class="block text-sm font-medium text-gray-700 mb-1">Dirección Actual <span class="text-red-500">*</span></label>
+                    <input type="text" id="direccion" placeholder="Av. Principal 123, Distrito, Ciudad"
+                           class="w-full border border-gray-300 bg-gray-50 py-2 px-3 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+                </div>
+                <div>
+                    <label for="telefono_emp" class="block text-sm font-medium text-gray-700 mb-1">Teléfono Principal <span class="text-red-500">*</span></label>
+                    <input type="tel" id="telefono_emp" placeholder="987654321"
+                           class="w-full border border-gray-300 bg-gray-50 py-2 px-3 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+                </div>
+                <div>
+                    <label for="email_emp" class="block text-sm font-medium text-gray-700 mb-1">Correo Electrónico <span class="text-red-500">*</span></label>
+                    <input type="email" id="email_emp" placeholder="ejemplo@email.com"
+                           class="w-full border border-gray-300 bg-gray-50 py-2 px-3 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+                </div>
+            </form>
+        </div>
+
+        <div *ngIf="currentStep === 2">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-6 border-b pb-3">Paso 2: Datos del Contrato y Puesto</h2>
+            <form class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label for="cargo" class="block text-sm font-medium text-gray-700 mb-1">Cargo/Puesto <span class="text-red-500">*</span></label>
+                    <input type="text" id="cargo" placeholder="Docente, Administrador, Director"
+                           class="w-full border border-gray-300 bg-gray-50 py-2 px-3 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+                </div>
+                <div>
+                    <label for="area" class="block text-sm font-medium text-gray-700 mb-1">Área o Nivel (si es docente) <span class="text-red-500">*</span></label>
+                    <select id="area"
+                            class="w-full border border-gray-300 bg-gray-200 text-gray-800 py-2 px-3 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+                        <option>Inicial</option>
+                        <option>Primaria</option>
+                        <option>Secundaria</option>
+                        <option>Administrativo</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="condicion_lab" class="block text-sm font-medium text-gray-700 mb-1">Condición Laboral <span class="text-red-500">*</span></label>
+                    <select id="condicion_lab"
+                            class="w-full border border-gray-300 bg-gray-200 text-gray-800 py-2 px-3 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+                        <option>Nombrado</option>
+                        <option>Contratado</option>
+                        <option>Servicios (SNP/Régimen Especial)</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="fecha_ingreso" class="block text-sm font-medium text-gray-700 mb-1">Fecha de Ingreso <span class="text-red-500">*</span></label>
+                    <input type="date" id="fecha_ingreso"
+                           class="w-full border border-gray-300 bg-gray-50 py-2 px-3 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+                </div>
+                <div>
+                    <label for="sueldo" class="block text-sm font-medium text-gray-700 mb-1">Sueldo Base (Soles) <span class="text-red-500">*</span></label>
+                    <input type="number" id="sueldo" placeholder="Ej: 2500.00"
+                           class="w-full border border-gray-300 bg-gray-50 py-2 px-3 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+                </div>
+                <div>
+                    <label for="regimen_pen" class="block text-sm font-medium text-gray-700 mb-1">Régimen Pensionario <span class="text-red-500">*</span></label>
+                    <select id="regimen_pen"
+                            class="w-full border border-gray-300 bg-gray-200 text-gray-800 py-2 px-3 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+                        <option>ONP (Sistema Nacional de Pensiones)</option>
+                        <option>AFP (Sistema Privado de Pensiones)</option>
+                        <option>No Aplica (Servicios)</option>
+                    </select>
+                </div>
+            </form>
+        </div>
+
+        <div *ngIf="currentStep === 3">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-6 border-b pb-3">Paso 3: Expediente y Documentación Digital</h2>
+
+            <div class="space-y-6">
+
+                <div class="border border-orange-200 bg-orange-50 p-4 rounded-lg">
+                    <p class="font-bold text-orange-700 mb-1">Atención:</p>
+                    <p class="text-sm text-gray-700">Asegúrese de que todos los documentos sean legibles y estén en formato PDF o imagen.</p>
+                </div>
+
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center p-4 border border-gray-300 rounded-lg bg-gray-50">
+                    <label class="text-base font-medium text-gray-700 mb-2 md:mb-0">1. Curriculum Vitae (CV) <span class="text-red-500">*</span></label>
+                    <input type="file" class="text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-orange-600 file:text-white hover:file:bg-orange-700"/>
+                </div>
+
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center p-4 border border-gray-300 rounded-lg bg-gray-50">
+                    <label class="text-base font-medium text-gray-700 mb-2 md:mb-0">2. Contrato de Trabajo Firmado <span class="text-red-500">*</span></label>
+                    <input type="file" class="text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-orange-600 file:text-white hover:file:bg-orange-700"/>
+                </div>
+
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center p-4 border border-gray-300 rounded-lg bg-gray-50">
+                    <label class="text-base font-medium text-gray-700 mb-2 md:mb-0">3. Copia de DNI y Ficha RUC (si aplica)</label>
+                    <input type="file" class="text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-orange-600 file:text-white hover:file:bg-orange-700"/>
+                </div>
+
+                <div class="pt-4 border-t border-gray-200">
+                    <div class="flex items-start">
+                        <div class="flex items-center h-5">
+                            <input id="aceptacion_docs" name="aceptacion_docs" type="checkbox" required
+                                   class="focus:ring-orange-500 h-4 w-4 text-orange-600 border-gray-300 rounded">
+                        </div>
+                        <div class="ml-3 text-sm">
+                            <label for="aceptacion_docs" class="font-medium text-gray-900">Certifico la veracidad de la información y la autenticidad de los documentos cargados.</label>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="flex justify-between mt-6">
+        <button (click)="prevStep()" *ngIf="currentStep > 1"
+                class="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300 flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+            </svg>
+            Anterior
+        </button>
+        <div *ngIf="currentStep === 1"></div> <button (click)="nextStep()"
+                class="bg-orange-600 hover:bg-orange-700 text-white font-semibold py-3 px-6 rounded-lg shadow-xl transition duration-300 flex items-center ml-auto">
+            <span *ngIf="currentStep < 3">Siguiente Paso ({{currentStep + 1}}/3)</span>
+            <span *ngIf="currentStep === 3">Confirmar Registro</span>
+            <svg *ngIf="currentStep < 3" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+            </svg>
+            <svg *ngIf="currentStep === 3" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+            </svg>
+        </button>
+    </div>
+
+  </div>
+</div>

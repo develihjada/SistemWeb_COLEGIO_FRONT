@@ -5,6 +5,7 @@ import { APODERADOS_ROUTES } from './modules/administrativo/apodereados/apoderad
 import { CONFIGURACIONES_SISTEMA } from './modules/configuracion/sistema/sistema.routes';
 import { TIPODOCUMENTOS_ROUTES } from './modules/configuracion/tipoDocumentos/tipoDocumentos.routes';
 import { MATRICULA_ROUTES } from './modules/moduloAcademico/matricula/presentation/routes/matricula.routes';
+import { EMPLEADOS_ROUTES } from './modules/configuracionSeguridad/empleados/presentation/routes/empleados.routes';
 
 export const routes: Routes = [
   ...LOGIN_ROUTES,
@@ -12,5 +13,6 @@ export const routes: Routes = [
   ...APODERADOS_ROUTES,
   ...CONFIGURACIONES_SISTEMA,
   ...TIPODOCUMENTOS_ROUTES,
-  ...MATRICULA_ROUTES
+  ...MATRICULA_ROUTES,
+  ...EMPLEADOS_ROUTES
 ];
