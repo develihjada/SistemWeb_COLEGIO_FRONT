@@ -1,0 +1,163 @@
+<div class="p-6 bg-gray-50 min-h-screen">
+
+  <div class="flex items-center justify-between mb-8">
+    <h1 class="text-3xl font-bold text-gray-800">
+      Gestión de Usuarios del Sistema
+    </h1>
+    <button (click)="RegistroUsuario()" class="bg-orange-600 hover:bg-orange-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300 flex items-center">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+        <path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z" />
+      </svg>
+      Crear Nuevo Usuario
+    </button>
+  </div>
+
+  <div class="bg-white p-4 rounded-xl shadow-lg mb-6 border border-gray-200">
+    <div class="grid grid-cols-1 md:grid-cols-5 gap-4 items-end">
+
+      <div class="md:col-span-2">
+        <label for="search-user" class="block text-sm font-medium text-gray-700 mb-1">Buscar por Email o Nombre</label>
+        <div class="relative">
+          <input type="text" id="search-user" placeholder="usuario@colegio.edu.pe..."
+                 class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500 transition duration-150">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+          </svg>
+        </div>
+      </div>
+
+      <div>
+        <label for="rol-filter" class="block text-sm font-medium text-gray-700 mb-1">Filtrar por Rol</label>
+        <select id="rol-filter"
+                class="w-full border border-gray-300 bg-gray-200 text-gray-800 rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-orange-500 focus:border-orange-500 transition duration-150">
+          <option>Todos</option>
+          <option>Administrador</option>
+          <option>Docente</option>
+          <option>Apoderado</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="estado-filter" class="block text-sm font-medium text-gray-700 mb-1">Estado</label>
+        <select id="estado-filter"
+                class="w-full border border-gray-300 bg-gray-200 text-gray-800 rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-orange-500 focus:border-orange-500 transition duration-150">
+          <option>Activo</option>
+          <option>Bloqueado</option>
+          <option>Pendiente</option>
+        </select>
+      </div>
+
+      <button class="w-full bg-orange-600 hover:bg-orange-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300">
+        Aplicar
+      </button>
+
+    </div>
+  </div>
+
+  <div class="bg-white shadow-xl rounded-xl overflow-x-auto">
+    <table class="min-w-full divide-y divide-gray-200">
+      <thead class="bg-gray-50">
+        <tr>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Usuario/Email
+          </th>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Nombre Completo
+          </th>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Rol Principal
+          </th>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Entidad Relacionada
+          </th>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Estado Cuenta
+          </th>
+          <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Acciones
+          </th>
+        </tr>
+      </thead>
+      <tbody class="bg-white divide-y divide-gray-200">
+        <tr>
+          <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+            m.gomez@colegio.edu.pe
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+            Gómez Rivera, Martha
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm">
+            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-indigo-100 text-indigo-800">
+                Docente
+            </span>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+            DNI: 45678901
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm">
+            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+              Activo
+            </span>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium flex justify-center space-x-2">
+            <button class="text-orange-600 hover:text-orange-900" title="Editar Permisos">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+                    <path d="M18 5v.01z" />
+                </svg>
+            </button>
+            <button class="text-gray-500 hover:text-gray-900" title="Restablecer Contraseña">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+                </svg>
+            </button>
+          </td>
+        </tr>
+        <tr>
+            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+              luis.garcia@gmail.com
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+              García Huamán, Luis
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm">
+              <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                  Apoderado
+              </span>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              Estudiante Cód: 202512346
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm">
+              <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                Bloqueado
+              </span>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium flex justify-center space-x-2">
+              <button class="text-green-600 hover:text-green-900" title="Desbloquear Cuenta">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                      <path d="M10 2a5 5 0 00-5 5v2a2 2 0 00-2 2v5a2 2 0 002 2h10a2 2 0 002-2v-5a2 2 0 00-2-2H7V7a3 3 0 016 0v2h2V7a5 5 0 00-5-5z" />
+                  </svg>
+              </button>
+              <button class="text-gray-500 hover:text-gray-900" title="Restablecer Contraseña">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+                  </svg>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+    </table>
+
+    <div class="p-4 flex justify-between items-center border-t border-gray-200">
+        <span class="text-sm text-gray-700">Mostrando 1 a 10 de 150 usuarios</span>
+        <div class="flex space-x-1">
+            <button class="px-3 py-1 text-sm font-medium text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300">Anterior</button>
+            <button class="px-3 py-1 text-sm font-medium text-white bg-orange-600 rounded-lg shadow">1</button>
+            <button class="px-3 py-1 text-sm font-medium text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300">2</button>
+            <button class="px-3 py-1 text-sm font-medium text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300">Siguiente</button>
+        </div>
+    </div>
+  </div>
+
+</div>

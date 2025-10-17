@@ -289,6 +289,12 @@ export class InicioPage {
           route: '/lista-empleados',
           roles: [UserRole.ADMINISTRADOR, UserRole.PADRE_FAMILIA],
         },
+        {
+          name: 'Usuarios',
+          icon: 'ti ti-heart',
+          route: '/lista_usuarios',
+          roles: [UserRole.ADMINISTRADOR, UserRole.PADRE_FAMILIA],
+        },
       ],
     },
   ];
