@@ -1,1 +1,187 @@
-<p>lista-matricula-page works!</p>
+<div class="p-6 bg-gray-50 min-h-screen">
+
+  <div class="flex items-center justify-between mb-8">
+    <h1 class="text-3xl font-bold text-gray-800">
+      Matriculados del Periodo
+    </h1>
+    <button (click)="Matricular()" class="bg-orange-600 hover:bg-orange-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300 flex items-center">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
+      </svg>
+      Nueva Matrícula
+    </button>
+  </div>
+
+  <div class="bg-white p-4 rounded-xl shadow-lg mb-6 border border-gray-200">
+    <div class="grid grid-cols-1 md:grid-cols-6 gap-4 items-end">
+
+      <div class="md:col-span-2">
+        <label for="search" class="block text-sm font-medium text-gray-700 mb-1">Buscar Estudiante</label>
+        <div class="relative">
+          <input type="text" id="search" placeholder="Nombre, Código o DNI..."
+                 class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500 transition duration-150">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+          </svg>
+        </div>
+      </div>
+
+      <div>
+        <label for="grado-filter" class="block text-sm font-medium text-gray-700 mb-1">Grado</label>
+        <select id="grado-filter"
+                class="w-full border border-gray-300 bg-gray-200 text-gray-800 rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-orange-500 focus:border-orange-500 transition duration-150">
+          <option>Todos</option>
+          <option>Inicial 3 años</option>
+          <option>1° Primaria</option>
+          <option>5° Secundaria</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="seccion-filter" class="block text-sm font-medium text-gray-700 mb-1">Sección/Aula</label>
+        <select id="seccion-filter"
+                class="w-full border border-gray-300 bg-gray-200 text-gray-800 rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-orange-500 focus:border-orange-500 transition duration-150">
+          <option>Todas</option>
+          <option>A</option>
+          <option>B</option>
+          <option>Única</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="estado-filter" class="block text-sm font-medium text-gray-700 mb-1">Estado</label>
+        <select id="estado-filter"
+                class="w-full border border-gray-300 bg-gray-200 text-gray-800 rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-orange-500 focus:border-orange-500 transition duration-150">
+          <option>Todos</option>
+          <option>Confirmada</option>
+          <option>Pendiente Doc.</option>
+          <option>En Proceso</option>
+        </select>
+      </div>
+
+      <div class="flex space-x-2">
+          <button class="w-full bg-orange-600 hover:bg-orange-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300">
+            Aplicar
+          </button>
+          <button class="w-full bg-white border border-gray-300 text-gray-700 hover:bg-gray-100 font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300">
+            Limpiar
+          </button>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="bg-white shadow-xl rounded-xl overflow-x-auto">
+    <table class="min-w-full divide-y divide-gray-200">
+      <thead class="bg-gray-50">
+        <tr>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Cód. Estudiante
+          </th>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Nombres y Apellidos
+          </th>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            DNI
+          </th>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Grado | Sección
+          </th>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Estado Matrícula
+          </th>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Condición
+          </th>
+          <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Acciones
+          </th>
+        </tr>
+      </thead>
+      <tbody class="bg-white divide-y divide-gray-200">
+        <tr>
+          <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+            202512345
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+            Pérez Rojas, Ana Sofía
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+            78901234
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+            3° Primaria | "C"
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm">
+            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+              Confirmada
+            </span>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+            Regular
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium flex justify-center space-x-2">
+            <button class="text-orange-600 hover:text-orange-900" title="Ver Detalles">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+                    <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
+                </svg>
+            </button>
+            <button class="text-gray-500 hover:text-gray-900" title="Editar FUM">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zm-5.646 9.384L3 16.5V13.5l5.646-5.646 2.828 2.828z" />
+                </svg>
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+            202512346
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+            García Huamán, Luis
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+            PENDIENTE
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+            1° Secundaria | "A"
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm">
+            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+              Pendiente Doc.
+            </span>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+            Traslado
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium flex justify-center space-x-2">
+            <button class="text-orange-600 hover:text-orange-900" title="Ver Detalles">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+                    <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
+                </svg>
+            </button>
+            <button class="text-orange-500 hover:text-orange-900" title="Gestionar Documentos">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
+                    <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm4.707 5.707a1 1 0 00-1.414-1.414l-2 2a1 1 0 000 1.414l2 2a1 1 0 001.414-1.414L7.414 13H10a1 1 0 000-2H7.414l.293-.293z" clip-rule="evenodd" />
+                </svg>
+            </button>
+          </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="p-4 flex justify-between items-center border-t border-gray-200">
+        <span class="text-sm text-gray-700">Mostrando 1 a 10 de 120 estudiantes</span>
+        <div class="flex space-x-1">
+            <button class="px-3 py-1 text-sm font-medium text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300">Anterior</button>
+            <button class="px-3 py-1 text-sm font-medium text-white bg-orange-600 rounded-lg shadow">1</button>
+            <button class="px-3 py-1 text-sm font-medium text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300">2</button>
+            <button class="px-3 py-1 text-sm font-medium text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300">Siguiente</button>
+        </div>
+    </div>
+  </div>
+
+</div>

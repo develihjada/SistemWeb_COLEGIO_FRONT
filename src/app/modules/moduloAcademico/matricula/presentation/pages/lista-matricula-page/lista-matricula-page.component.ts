@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lista-matricula-page',
@@ -9,4 +10,9 @@ import { Component } from '@angular/core';
 })
 export class ListaMatriculaPageComponent {
 
+  private router = inject(Router);
+
+  Matricular() {
+    this.router.navigate(['/registro_matricula']);
+  }
 }
