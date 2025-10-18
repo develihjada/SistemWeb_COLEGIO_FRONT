@@ -68,7 +68,7 @@ export class InicioPage {
         {
           name: 'Evaluaciones y notas',
           icon: 'ti ti-list',
-          route: '/estudiantes/lista',
+          route: '/lista-evaluaciones-notas',
           roles: [UserRole.ADMINISTRADOR, UserRole.DOCENTE, UserRole.PERSONAL_ADMINISTRATIVO],
         },
         {

@@ -7,6 +7,7 @@ import { TIPODOCUMENTOS_ROUTES } from './modules/configuracion/tipoDocumentos/ti
 import { MATRICULA_ROUTES } from './modules/moduloAcademico/matricula/presentation/routes/matricula.routes';
 import { EMPLEADOS_ROUTES } from './modules/configuracionSeguridad/empleados/presentation/routes/empleados.routes';
 import { USUARIOS_ROUTES } from './modules/configuracionSeguridad/usuarios/presentation/routes/usuarios.routes';
+import { EVALUACIONESNOTAS_ROUTES } from './modules/moduloAcademico/evaluacionNotas/presentation/routes/evaluacionesNotas.routes';
 
 export const routes: Routes = [
   ...LOGIN_ROUTES,
@@ -16,5 +17,6 @@ export const routes: Routes = [
   ...TIPODOCUMENTOS_ROUTES,
   ...MATRICULA_ROUTES,
   ...EMPLEADOS_ROUTES,
-  ...USUARIOS_ROUTES
+  ...USUARIOS_ROUTES,
+  ...EVALUACIONESNOTAS_ROUTES
 ];
