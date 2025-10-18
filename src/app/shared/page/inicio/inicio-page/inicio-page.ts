@@ -207,6 +207,12 @@ export class InicioPage {
       roles: [UserRole.ADMINISTRADOR, UserRole.DOCENTE, UserRole.PERSONAL_ADMINISTRATIVO],
       items: [
         {
+          name: 'Apoderados',
+          icon: 'ti ti-list',
+          route: '/lista-apoderados',
+          roles: [UserRole.ADMINISTRADOR, UserRole.DOCENTE, UserRole.PERSONAL_ADMINISTRATIVO],
+        },
+        {
           name: 'Consulta de notas y promedios',
           icon: 'ti ti-list',
           route: '/estudiantes/lista',

@@ -1,0 +1,220 @@
+<div class="p-6 bg-gray-50 min-h-screen">
+
+  <div class="max-w-4xl mx-auto">
+    <div class="mb-6">
+        <button (click)="prevStep()"
+                class="flex items-center text-gray-600 hover:text-orange-600 transition duration-150 disabled:opacity-50 disabled:cursor-not-allowed">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+            </svg>
+            <span *ngIf="currentStep === 1">Volver al Directorio</span>
+            <span *ngIf="currentStep > 1">Paso Anterior</span>
+        </button>
+        <h1 class="text-3xl font-extrabold text-gray-800 mt-2">
+            Registro de Nuevo Apoderado
+        </h1>
+    </div>
+
+    <div class="flex justify-between items-center mb-8 bg-white p-4 rounded-xl shadow-lg border border-gray-200">
+
+        <div class="flex flex-col items-center flex-1 mx-2 cursor-pointer" (click)="goToStep(1)">
+            <div [class.bg-orange-600]="currentStep === 1" [class.bg-gray-200]="currentStep !== 1"
+                 [class.text-white]="currentStep === 1" [class.text-gray-500]="currentStep !== 1"
+                 class="w-10 h-10 flex items-center justify-center rounded-full font-bold mb-1 shadow-md transition duration-300">1</div>
+            <span [class.text-orange-600]="currentStep === 1" [class.text-gray-500]="currentStep !== 1"
+                  class="text-xs font-semibold hidden sm:block">Identidad y Contacto</span>
+        </div>
+
+        <div class="w-full h-1 bg-gray-200 mx-2 flex-1"></div>
+
+        <div class="flex flex-col items-center flex-1 mx-2 cursor-pointer" (click)="goToStep(2)">
+            <div [class.bg-orange-600]="currentStep === 2" [class.bg-gray-200]="currentStep !== 2"
+                 [class.text-white]="currentStep === 2" [class.text-gray-500]="currentStep !== 2"
+                 class="w-10 h-10 flex items-center justify-center rounded-full font-bold mb-1 shadow-md transition duration-300">2</div>
+            <span [class.text-orange-600]="currentStep === 2" [class.text-gray-500]="currentStep !== 2"
+                  class="text-xs font-semibold hidden sm:block">Vínculo Estudiantil</span>
+        </div>
+
+        <div class="w-full h-1 bg-gray-200 mx-2 flex-1"></div>
+
+        <div class="flex flex-col items-center flex-1 mx-2 cursor-pointer" (click)="goToStep(3)">
+            <div [class.bg-orange-600]="currentStep === 3" [class.bg-gray-200]="currentStep !== 3"
+                 [class.text-white]="currentStep === 3" [class.text-gray-500]="currentStep !== 3"
+                 class="w-10 h-10 flex items-center justify-center rounded-full font-bold mb-1 shadow-md transition duration-300">3</div>
+            <span [class.text-orange-600]="currentStep === 3" [class.text-gray-500]="currentStep !== 3"
+                  class="text-xs font-semibold hidden sm:block">Credenciales y Compromiso</span>
+        </div>
+    </div>
+
+    <div class="bg-white p-6 sm:p-8 rounded-xl shadow-2xl border border-gray-200">
+
+        <div *ngIf="currentStep === 1">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-6 border-b pb-3">Paso 1: Datos de Identificación y Contacto</h2>
+            <form class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label for="dni_apo" class="block text-sm font-medium text-gray-700 mb-1">DNI del Apoderado <span class="text-red-500">*</span></label>
+                    <input type="text" id="dni_apo" placeholder="Ej: 76543210"
+                           class="w-full border border-gray-300 bg-gray-50 py-2 px-3 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+                    <p class="mt-1 text-xs text-gray-500">Sugerencia: Usar DNI para precargar datos de RENIEC.</p>
+                </div>
+                <div>
+                    <label for="tipo_doc_apo" class="block text-sm font-medium text-gray-700 mb-1">Tipo de Documento</label>
+                    <select id="tipo_doc_apo"
+                            class="w-full border border-gray-300 bg-gray-200 text-gray-800 py-2 px-3 rounded-lg focus:ring-orange-500 focus:border-orange-500 transition duration-150">
+                        <option>DNI</option>
+                        <option>Carné de Extranjería</option>
+                        <option>Pasaporte</option>
+                    </select>
+                </div>
+
+                <div class="md:col-span-2">
+                    <label for="nombre_completo_apo" class="block text-sm font-medium text-gray-700 mb-1">Nombres y Apellidos Completos <span class="text-red-500">*</span></label>
+                    <input type="text" id="nombre_completo_apo" placeholder="Laura Soto"
+                           class="w-full border border-gray-300 bg-gray-50 py-2 px-3 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+                </div>
+
+                <div>
+                    <label for="telefono_apo" class="block text-sm font-medium text-gray-700 mb-1">Teléfono Móvil <span class="text-red-500">*</span></label>
+                    <input type="tel" id="telefono_apo" placeholder="987654321"
+                           class="w-full border border-gray-300 bg-gray-50 py-2 px-3 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+                </div>
+                <div>
+                    <label for="email_apo" class="block text-sm font-medium text-gray-700 mb-1">Correo Electrónico <span class="text-red-500">*</span></label>
+                    <input type="email" id="email_apo" placeholder="contacto@apoderado.com"
+                           class="w-full border border-gray-300 bg-gray-50 py-2 px-3 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+                </div>
+
+                <div class="md:col-span-2">
+                    <label for="direccion_apo" class="block text-sm font-medium text-gray-700 mb-1">Dirección de Residencia</label>
+                    <input type="text" id="direccion_apo" placeholder="Av. Principal 123, Distrito"
+                           class="w-full border border-gray-300 bg-gray-50 py-2 px-3 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+                </div>
+            </form>
+        </div>
+
+        <div *ngIf="currentStep === 2">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-6 border-b pb-3">Paso 2: Relación con el Estudiante</h2>
+            <form class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                <div class="md:col-span-2">
+                    <label for="estudiante_search" class="block text-sm font-medium text-gray-700 mb-1">Buscar Estudiante a vincular (Código SIAGIE / DNI) <span class="text-red-500">*</span></label>
+                    <div class="flex space-x-2">
+                        <input type="text" id="estudiante_search" placeholder="Ingrese Código o DNI del alumno..."
+                               class="flex-grow border border-gray-300 bg-gray-50 py-2 px-3 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+                        <button type="button" class="bg-orange-600 hover:bg-orange-700 text-white py-2 px-4 rounded-lg transition duration-150">
+                            Buscar
+                        </button>
+                    </div>
+                </div>
+
+                <div class="md:col-span-2 p-4 bg-gray-100 border border-gray-300 rounded-lg">
+                    <p class="font-semibold text-gray-800">Estudiante Encontrado:</p>
+                    <p class="text-sm text-gray-700">Nombre: Ana Sofía Díaz</p>
+                    <p class="text-sm text-gray-700">Grado: 1ro Primaria (Sección A)</p>
+                    <p class="text-sm text-green-600 font-medium mt-1">✓ Vínculo listo para ser confirmado.</p>
+                </div>
+
+                <div>
+                    <label for="tipo_vinculo" class="block text-sm font-medium text-gray-700 mb-1">Tipo de Vínculo con el Estudiante <span class="text-red-500">*</span></label>
+                    <select id="tipo_vinculo"
+                            class="w-full border border-gray-300 bg-gray-200 text-gray-800 py-2 px-3 rounded-lg focus:ring-orange-500 focus:border-orange-500 transition duration-150">
+                        <option>Madre</option>
+                        <option>Padre</option>
+                        <option>Tutor Legal</option>
+                        <option>Apoderado Designado</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="responsabilidad" class="block text-sm font-medium text-gray-700 mb-1">Es Apoderado Financiero/Principal <span class="text-red-500">*</span></label>
+                    <select id="responsabilidad"
+                            class="w-full border border-gray-300 bg-gray-200 text-gray-800 py-2 px-3 rounded-lg focus:ring-orange-500 focus:border-orange-500 transition duration-150">
+                        <option>Sí, es responsable financiero y principal.</option>
+                        <option>No, solo es contacto secundario/tutor.</option>
+                    </select>
+                </div>
+
+            </form>
+        </div>
+
+        <div *ngIf="currentStep === 3">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-6 border-b pb-3">Paso 3: Credenciales y Compromiso</h2>
+            <form class="space-y-6">
+
+                <div class="border border-orange-200 bg-orange-50 p-4 rounded-lg">
+                    <p class="text-lg font-bold text-orange-700 mb-3">Acceso al Portal de Padres</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="user_portal" class="block text-sm font-medium text-gray-700 mb-1">Usuario (Email) <span class="text-red-500">*</span></label>
+                            <input type="email" id="user_portal" placeholder="Usar correo del paso 1"
+                                class="w-full border border-gray-300 bg-gray-50 py-2 px-3 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+                        </div>
+                        <div>
+                            <label for="pass_portal" class="block text-sm font-medium text-gray-700 mb-1">Contraseña Inicial <span class="text-red-500">*</span></label>
+                            <input type="password" id="pass_portal" placeholder="Generar o asignar"
+                                class="w-full border border-gray-300 bg-gray-50 py-2 px-3 rounded-lg focus:ring-orange-500 focus:border-orange-500">
+                        </div>
+                    </div>
+                    <p class="mt-2 text-xs text-gray-500">
+                        Se recomienda generar una contraseña y notificarla al apoderado.
+                    </p>
+                </div>
+
+                <div>
+                    <p class="text-lg font-bold text-gray-800 mb-3">Documentación Acreditativa</p>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center p-3 border border-gray-300 rounded-lg bg-gray-50">
+                            <label class="text-sm font-medium text-gray-700">Copia de DNI del Apoderado</label>
+                            <button type="button" class="text-orange-600 hover:text-orange-700 text-sm font-semibold">Subir DNI</button>
+                        </div>
+                        <div class="flex justify-between items-center p-3 border border-gray-300 rounded-lg bg-gray-50">
+                            <label class="text-sm font-medium text-gray-700">Carta Poder Notarial (Si aplica Vínculo Tutor)</label>
+                            <button type="button" class="text-orange-600 hover:text-orange-700 text-sm font-semibold">Subir Documento</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-4 border-t border-gray-200">
+                    <p class="text-lg font-bold text-gray-800 mb-3">Declaración y Compromiso</p>
+                    <div class="flex items-start">
+                        <div class="flex items-center h-5">
+                            <input id="compromiso_apo" name="compromiso_apo" type="checkbox" required
+                                   class="focus:ring-orange-500 h-4 w-4 text-orange-600 border-gray-300 rounded">
+                        </div>
+                        <div class="ml-3 text-sm">
+                            <label for="compromiso_apo" class="font-medium text-gray-900">El apoderado acepta los términos de convivencia y el Reglamento Interno (Declaración Jurada).</label>
+                            <p class="text-gray-500">El apoderado ha presentado y firmado la documentación de respaldo.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+
+    <div class="flex justify-between mt-6">
+        <button (click)="prevStep()" [disabled]="currentStep === 1"
+                class="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300 flex items-center disabled:opacity-50 disabled:cursor-not-allowed">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+            </svg>
+            Anterior
+        </button>
+        <div *ngIf="currentStep === 1"></div>
+
+        <button (click)="nextStep()"
+                class="bg-orange-600 hover:bg-orange-700 text-white font-semibold py-3 px-6 rounded-lg shadow-xl transition duration-300 flex items-center ml-auto">
+            <span *ngIf="currentStep < 3">Siguiente Paso ({{currentStep + 1}}/3)</span>
+            <span *ngIf="currentStep === 3">Confirmar Registro</span>
+            <svg *ngIf="currentStep < 3" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+            </svg>
+            <svg *ngIf="currentStep === 3" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+            </svg>
+        </button>
+    </div>
+
+  </div>
+</div>
