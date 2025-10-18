@@ -1,0 +1,135 @@
+<div class="p-6 mt-8 lg:col-span-4">
+    <h2 class="text-xl font-semibold text-gray-700 mb-4">Registro y Consulta de Asistencias de Alumnos</h2>
+
+    <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
+
+        <div class="space-y-4 mb-6 border-b border-gray-100 pb-4">
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
+                <div class="md:col-span-2">
+                    <label class="block text-xs font-medium text-gray-700 mb-1">Seleccionar Fecha de Asistencia</label>
+                    <input
+                        type="date"
+                        (change)="setFilter('fecha', $event.target.value)"
+                        class="mt-1 block w-full pl-3 pr-3 py-2 text-base border-gray-300 focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm rounded-md"
+                        [value]="filters.fecha"
+                    >
+                </div>
+                <div class="md:col-span-2">
+                    <label class="block text-xs font-medium text-gray-700 mb-1">Buscar por Estudiante/DNI</label>
+                    <input
+                        type="text"
+                        placeholder="Nombre o DNI del alumno..."
+                        (input)="setFilter('estudiante', $event.target.value)"
+                        class="mt-1 block w-full pl-3 pr-3 py-2 text-base border-gray-300 focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm rounded-md"
+                    >
+                </div>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-3">
+                <span class="text-sm font-semibold text-gray-700 min-w-[4rem]">Grado:</span>
+                @for (grado of grados; track grado) {
+                <button
+                    (click)="setFilter('grado', grado)"
+                    [class.bg-orange-600]="filters.grado === grado"
+                    [class.bg-gray-100]="filters.grado !== grado"
+                    [class.text-white]="filters.grado === grado"
+                    [class.text-gray-700]="filters.grado !== grado"
+                    class="text-sm py-2 px-3 rounded-full transition duration-150 hover:bg-orange-700 hover:text-white"
+                >
+                    {{ grado }}
+                </button>
+                }
+            </div>
+
+            <div class="flex flex-wrap items-center gap-3">
+                <span class="text-sm font-semibold text-gray-700 min-w-[4rem]">Sección:</span>
+                @for (seccion of secciones; track seccion) {
+                <button
+                    (click)="setFilter('seccion', seccion)"
+                    [class.bg-orange-600]="filters.seccion === seccion"
+                    [class.bg-gray-100]="filters.seccion !== seccion"
+                    [class.text-white]="filters.seccion === seccion"
+                    [class.text-gray-700]="filters.seccion !== seccion"
+                    class="text-sm py-2 px-3 rounded-full transition duration-150 hover:bg-orange-700 hover:text-white"
+                >
+                    {{ seccion }}
+                </button>
+                }
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+                <div>
+                    <label class="block text-xs font-medium text-gray-700 mb-1">Filtrar por Curso/Área</label>
+                    <select
+                        (change)="setFilter('curso', $any($event.target).value)"
+                        class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm rounded-md"
+                    >
+                        <option value="">Todos los Cursos</option>
+                        @for (curso of cursos; track curso) {
+                        <option [value]="curso">{{ curso }}</option>
+                        }
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-medium text-gray-700 mb-1">Filtrar por Docente</label>
+                    <select
+                        (change)="setFilter('docente', $any($event.target).value)"
+                        class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm rounded-md"
+                    >
+                        <option value="">Todos los Docentes</option>
+                        @for (docente of docentes; track docente) {
+                        <option [value]="docente">{{ docente }}</option>
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Estudiante</th>
+                        <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Grado/Sección</th>
+                        <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Curso/Hora</th>
+                        <th class="px-4 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Estado</th>
+                        <th class="px-4 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Observación</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-100">
+                    @for (item of filteredAsistencias; track item.estudiante) {
+                    <tr>
+                        <td class="px-4 py-3 whitespace-nowrap text-sm font-medium text-gray-900">{{ item.estudiante }}</td>
+                        <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-700">{{ item.grado }} / {{ item.seccion }}</td>
+                        <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-500">{{ item.curso }} ({{ item.hora }})</td>
+                        <td class="px-4 py-3 whitespace-nowrap text-center text-sm">
+                            <span
+                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full"
+                                [class.bg-green-100]="item.estado === 'Presente'" [class.text-green-800]="item.estado === 'Presente'"
+                                [class.bg-red-100]="item.estado === 'Ausente'" [class.text-red-800]="item.estado === 'Ausente'"
+                                [class.bg-yellow-100]="item.estado === 'Tardanza'" [class.text-yellow-800]="item.estado === 'Tardanza'"
+                            >
+                                {{ item.estado }}
+                            </span>
+                        </td>
+                        <td class="px-4 py-3 text-left text-sm text-gray-500 max-w-[10rem] truncate" title="{{ item.observacion }}">
+                            {{ item.observacion || 'N/A' }}
+                        </td>
+                    </tr>
+                    }
+                    @empty {
+                    <tr>
+                        <td colspan="5" class="px-4 py-6 text-center text-gray-500">
+                            No se encontraron registros de asistencia con los filtros aplicados.
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>

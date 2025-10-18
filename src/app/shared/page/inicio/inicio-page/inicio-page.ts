@@ -74,7 +74,7 @@ export class InicioPage {
         {
           name: 'Asistencia de alumnos',
           icon: 'ti ti-plus',
-          route: '/estudiantes/registro',
+          route: '/lista-asistencia-alumnos',
           roles: [UserRole.ADMINISTRADOR, UserRole.PERSONAL_ADMINISTRATIVO],
         },
         {
