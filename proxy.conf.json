@@ -1,0 +1,15 @@
+{
+  "/ws/*": {
+    "target": "http://192.168.50.40:8085",
+    "secure": false,
+    "changeOrigin": true,
+    "ws": true,
+    "logLevel": "debug"
+  },
+  "/Apoderado/*": {
+    "target": "http://192.168.50.40:8085",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}

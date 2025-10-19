@@ -1,4 +1,27 @@
 <div class="p-6 bg-gray-50 min-h-screen">
+  <!-- Toast/notification: aparece cuando showNewAlert = true -->
+  <div *ngIf="showNewAlert" class="fixed right-6 top-6 z-50">
+    <div class="max-w-sm w-full bg-white shadow-lg rounded-lg border border-gray-200 overflow-hidden">
+      <div class="p-3 flex items-start space-x-3">
+        <div class="flex-shrink-0">
+          <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4" />
+          </svg>
+        </div>
+        <div class="flex-1">
+          <p class="text-sm font-medium text-gray-900">Notificación</p>
+          <p class="text-sm text-gray-600">{{ newAlertMessage }}</p>
+        </div>
+        <div class="flex-shrink-0 pl-2">
+          <button (click)="dismissAlert()" class="text-gray-400 hover:text-gray-600">
+            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M6.293 6.293a1 1 0 011.414 0L10 8.586l2.293-2.293a1 1 0 111.414 1.414L11.414 10l2.293 2.293a1 1 0 01-1.414 1.414L10 11.414l-2.293 2.293a1 1 0 01-1.414-1.414L8.586 10 6.293 7.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="flex items-center justify-between mb-8">
     <h1 class="text-3xl font-bold text-gray-800">Directorio y Gestión de Apoderados</h1>
     <button
@@ -18,6 +41,7 @@
       </svg>
       Nuevo
     </button>
+
   </div>
 
   <div class="bg-white p-4 rounded-xl shadow-lg mb-6 border border-gray-200">
@@ -49,15 +73,27 @@
       </div>
 
       <div>
+        <label for="estado-filter" class="block text-sm font-medium text-gray-700 mb-1">Estado</label>
+        <select
+          id="estado-filter"
+          (change)="onEstadoChange($any($event.target).value)"
+          class="w-full border border-gray-300 bg-gray-200 text-gray-800 rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-orange-500 focus:border-orange-500 transition duration-150"
+        >
+          <option [value]="2" [selected]="filters.estado === 2"> Todos</option>
+          <option *ngFor="let estado of estados" [value]="estado" [selected]="filters.estado === estado">
+             {{ estado === 0 ? 'Inhabilitados' : estado === 1 ? 'Activos' : 'Todos' }}
+          </option>
+        </select>
+      </div>
+
+      <div>
         <label for="grado-filter" class="block text-sm font-medium text-gray-700 mb-1">Grado</label>
         <select
           id="grado-filter"
           class="w-full border border-gray-300 bg-gray-200 text-gray-800 rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-orange-500 focus:border-orange-500 transition duration-150"
         >
           <option value="">Todos</option>
-          @for (grado of grados; track grado) {
-          <option [value]="grado">{{ grado }}</option>
-          }
+          <option *ngFor="let grado of grados" [value]="grado">{{ grado }}</option>
         </select>
       </div>
 
@@ -70,9 +106,7 @@
           class="w-full border border-gray-300 bg-gray-200 text-gray-800 rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-orange-500 focus:border-orange-500 transition duration-150"
         >
           <option value="">Todas</option>
-          @for (seccion of secciones; track seccion) {
-          <option [value]="seccion">{{ seccion }}</option>
-          }
+          <option *ngFor="let seccion of secciones" [value]="seccion">{{ seccion }}</option>
         </select>
       </div>
 
@@ -85,9 +119,7 @@
           class="w-full border border-gray-300 bg-gray-200 text-gray-800 rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-orange-500 focus:border-orange-500 transition duration-150"
         >
           <option value="">Todos</option>
-          @for (vinculo of vinculos; track vinculo) {
-          <option [value]="vinculo">{{ vinculo }}</option>
-          }
+          <option *ngFor="let vinculo of vinculos" [value]="vinculo">{{ vinculo }}</option>
         </select>
       </div>
 
@@ -100,9 +132,7 @@
           class="w-full border border-gray-300 bg-gray-200 text-gray-800 rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-orange-500 focus:border-orange-500 transition duration-150"
         >
           <option value="">Todos</option>
-          @for (estado of estadosContacto; track estado) {
-          <option [value]="estado">{{ estado }}</option>
-          }
+          <option *ngFor="let estado of estadosContacto" [value]="estado">{{ estado }}</option>
         </select>
       </div>
 
@@ -122,7 +152,7 @@
   </div>
 
   <div class="bg-white shadow-xl rounded-xl overflow-x-auto">
-
+    <!-- Tabla de datos -->
     <table class="min-w-full divide-y divide-gray-200">
       <thead class="bg-gray-50">
         <tr>
@@ -164,22 +194,19 @@
           </th>
         </tr>
       </thead>
+
       <tbody class="bg-white divide-y divide-gray-200">
         @defer (on timer(100)) {
-          <ng-container *ngIf="apoderadosData$ | async as apoderados">
-            @for (apoderado of apoderados; track $index) {
-            <tr>
+        <ng-container *ngIf="apoderadosData$ | async as apoderados">
+          <ng-container *ngFor="let apoderado of apoderados; let i = index">
+            <tr *ngIf="passesFilter(apoderado)">
               <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                 {{ apoderado.nombres || apoderado.apellidos }}
-                <span class="text-gray-500 block text-xs">{{
-                  apoderado.ndocumento
-                }}</span>
+                <span class="text-gray-500 block text-xs">{{ apoderado.ndocumento }}</span>
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">No hay estudiante</td>
               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                <span class="font-semibold">{{
-                  apoderado.parentezco
-                }}</span>
+                <span class="font-semibold">{{ apoderado.parentezco }}</span>
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-sm">
                 <p class="text-gray-700 font-medium">{{ apoderado.telefono }}</p>
@@ -193,8 +220,7 @@
                   [class.bg-red-100]="apoderado.estado === 0"
                   [class.text-red-800]="apoderado.estado === 0"
                 >
-                  @if (apoderado.estado === 1) { Activo }
-                  @else if (apoderado.estado === 0) { Inactivo }
+                  {{ apoderado.estado === 1 ? 'Activo' : apoderado.estado === 0 ? 'Inactivo' : 'N/A' }}
                 </span>
               </td>
               <td
@@ -229,25 +255,46 @@
                 </button>
               </td>
             </tr>
-            }
           </ng-container>
+        </ng-container>
         } @placeholder {
-          <tr>
-            <td colspan="6" class="px-6 py-4 text-center text-sm text-gray-500">
-              Cargando apoderados...
-            </td>
-          </tr>
+        <tr>
+          <td colspan="6" class="px-6 py-4 text-center text-sm text-gray-500">
+            Cargando apoderados...
+          </td>
+        </tr>
         } @error {
-          <tr>
-            <td colspan="6" class="px-6 py-4 text-center text-sm text-red-600 font-semibold">
-              ⚠️ No se pudo cargar la lista de apoderados. Intente nuevamente.
-            </td>
-          </tr>
+        <tr>
+          <td colspan="6" class="px-6 py-4 text-center text-sm text-red-600 font-semibold">
+            ⚠️ No se pudo cargar la lista de apoderados. Intente nuevamente.
+          </td>
+        </tr>
         }
       </tbody>
     </table>
+    <!-- Loading indicator -->
+    <div *ngIf="isLoading" class="mb-4 p-3 bg-yellow-50 text-yellow-800 rounded flex items-center">
+      <svg class="animate-spin h-5 w-5 mr-2" viewBox="0 0 24 24">
+        <circle
+          class="opacity-25"
+          cx="12"
+          cy="12"
+          r="10"
+          stroke="currentColor"
+          stroke-width="4"
+          fill="none"
+        ></circle>
+        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+      </svg>
+      Cargando apoderados...
+    </div>
+    <!-- Error banner -->
+    <div *ngIf="errorMessage" class="mb-4 p-3 bg-red-50 text-red-700 rounded">
+      {{ errorMessage }}
+    </div>
 
-    <div
+    <ng-container *ngIf="!errorMessage">
+      <div
       *ngIf="apoderadosData$ | async as apoderados"
       class="p-4 flex justify-between items-center border-t border-gray-200"
     >
@@ -275,5 +322,8 @@
         </button>
       </div>
     </div>
+    </ng-container>
+
+
   </div>
 </div>
