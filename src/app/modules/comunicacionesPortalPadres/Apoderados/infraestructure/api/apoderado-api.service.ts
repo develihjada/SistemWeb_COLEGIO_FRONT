@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ResponseListaApoderados } from '../../aplication/dto/response/listaApoderado.response';
 import { environment } from '../../../../../../environments/environment.development';
+import { RequestBuscarApoderado } from '../../aplication/dto/request/buscarApoderado.request';
 
 @Injectable({ providedIn: 'root' })
 export class ApoderadoApiService {
@@ -13,6 +14,12 @@ export class ApoderadoApiService {
 
   listaApoderados(req: RequestListaApoderados): Observable<ResponseListaApoderados> {
     return this.http.post<ResponseListaApoderados>(`${this.URL}/Apoderado/Mostrar`, req,{
+        headers: { 'Content-Type': 'application/json' },
+      });
+  }
+
+  BuscarApoderados(req: RequestBuscarApoderado): Observable<ResponseListaApoderados> {
+    return this.http.post<ResponseListaApoderados>(`${this.URL}/Apoderado/Buscar`, req,{
         headers: { 'Content-Type': 'application/json' },
       });
   }

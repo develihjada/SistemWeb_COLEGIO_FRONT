@@ -1,5 +1,5 @@
 <div class="p-6 bg-gray-50 min-h-screen">
-  <!-- Toast/notification: aparece cuando showNewAlert = true -->
+  <!-- ================================================================================ -->
   <div *ngIf="showNewAlert" class="fixed right-6 top-6 z-50">
     <div class="max-w-sm w-full bg-white shadow-lg rounded-lg border border-gray-200 overflow-hidden">
       <div class="p-3 flex items-start space-x-3">
@@ -22,6 +22,9 @@
       </div>
     </div>
   </div>
+  <!-- ================================================================================ -->
+
+  <!-- ================================================================================ -->
   <div class="flex items-center justify-between mb-8">
     <h1 class="text-3xl font-bold text-gray-800">Directorio y Gestión de Apoderados</h1>
     <button
@@ -41,9 +44,10 @@
       </svg>
       Nuevo
     </button>
-
   </div>
+  <!-- ================================================================================ -->
 
+  <!-- ================================================================================ -->
   <div class="bg-white p-4 rounded-xl shadow-lg mb-6 border border-gray-200">
     <div class="grid grid-cols-1 md:grid-cols-7 gap-4 items-end">
       <div class="md:col-span-2">
@@ -52,6 +56,7 @@
         >
         <div class="relative">
           <input
+            #search
             type="text"
             id="search"
             placeholder="Nombre, DNI o Cód. Estudiante..."
@@ -138,9 +143,10 @@
 
       <div class="flex space-x-2">
         <button
+          (click)="buscarApoderado(search.value)"
           class="w-full bg-orange-600 hover:bg-orange-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300"
         >
-          Aplicar
+          Buscar
         </button>
         <button
           class="w-full bg-white border border-gray-300 text-gray-700 hover:bg-gray-100 font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300"
@@ -150,9 +156,10 @@
       </div>
     </div>
   </div>
+  <!-- ================================================================================ -->
 
+  <!-- ================================================================================ -->
   <div class="bg-white shadow-xl rounded-xl overflow-x-auto">
-    <!-- Tabla de datos -->
     <table class="min-w-full divide-y divide-gray-200">
       <thead class="bg-gray-50">
         <tr>
@@ -256,6 +263,12 @@
               </td>
             </tr>
           </ng-container>
+          <!-- Mensaje cuando la búsqueda no devuelve resultados -->
+          <tr *ngIf="(!apoderados || apoderados.length === 0) && !isLoading && !errorMessage && lastSearch">
+            <td colspan="6" class="px-6 py-4 text-center text-sm text-gray-600">
+              No se encontraron resultados para "{{ lastSearch }}".
+            </td>
+          </tr>
         </ng-container>
         } @placeholder {
         <tr>
@@ -326,4 +339,5 @@
 
 
   </div>
+  <!-- ================================================================================ -->
 </div>
